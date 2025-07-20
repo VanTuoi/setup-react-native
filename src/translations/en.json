@@ -1,0 +1,24 @@
+{
+  "onboarding": {
+    "message": "Welcome to obytes app site"
+  },
+  "settings": {
+    "about": "About",
+    "app_name": "App Name",
+    "arabic": "Arabic",
+    "vietnamese": "Vietnamese",
+    "english": "English",
+    "generale": "General",
+    "language": "Language",
+    "logout": "Logout",
+    "theme": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System",
+      "title": "Theme"
+    },
+    "title": "Settings",
+    "version": "Version"
+  },
+  "welcome": "Welcome to obytes app site"
+}

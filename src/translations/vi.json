@@ -1,0 +1,24 @@
+{
+  "onboarding": {
+    "message": "Chào mừng bạn đến với ứng dụng của tôi"
+  },
+  "settings": {
+    "about": "Giới thiệu",
+    "app_name": "Tên ứng dụng",
+    "arabic": "Tiếng Ả Rập",
+    "vietnamese": "Tiếng Việt",
+    "english": "Tiếng Anh",
+    "language": "Ngôn ngữ",
+    "generale": "Chung",
+    "logout": "Đăng xuất",
+    "theme": {
+      "dark": "Tối",
+      "light": "Sáng",
+      "system": "Hệ thống",
+      "title": "Chủ đề"
+    },
+    "title": "Cài đặt",
+    "version": "Phiên bản"
+  },
+  "welcome": "Chào mừng bạn đến với trang ứng dụng Obytes"
+}
