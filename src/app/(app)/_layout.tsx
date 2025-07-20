@@ -8,12 +8,15 @@ import {
   Settings as SettingsIcon,
 } from '@/components/ui/icons';
 import { useAuth } from '@/lib';
+import { translate } from '@/lib/i18n';
 
 export default function TabLayout() {
   const status = useAuth.use.status();
+
   const hideSplash = useCallback(async () => {
     await SplashScreen.hideAsync();
   }, []);
+
   useEffect(() => {
     if (status !== 'idle') {
       setTimeout(() => {
@@ -25,12 +28,13 @@ export default function TabLayout() {
   if (status === 'signOut') {
     return <Redirect href="/login" />;
   }
+
   return (
     <Tabs>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'User',
+          title: translate('layout.user_tab'),
           tabBarIcon: ({ color }) => <FeedIcon color={color} />,
           headerRight: () => <CreateNewPostLink />,
           tabBarButtonTestID: 'user-tab',
@@ -39,7 +43,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="settings"
         options={{
-          title: 'Settings',
+          title: translate('layout.settings_tab'),
           headerShown: false,
           tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
           tabBarButtonTestID: 'settings-tab',
@@ -53,7 +57,9 @@ const CreateNewPostLink = () => {
   return (
     <Link href="/feed/add-post" asChild>
       <Pressable>
-        <Text className="px-3 text-primary-300">Create</Text>
+        <Text className="px-3 text-primary-300">
+          {translate('layout.create')}
+        </Text>
       </Pressable>
     </Link>
   );

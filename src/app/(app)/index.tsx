@@ -12,6 +12,7 @@ import {
 } from '@/components/ui';
 import { renderHeader } from '@/components/user/header-table';
 import { UserItem } from '@/components/user/item';
+import { translate } from '@/lib/i18n';
 
 export default function Home() {
   const { data, isPending, isError } = useUsers();
@@ -19,7 +20,7 @@ export default function Home() {
   if (isError) {
     return (
       <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">Error when loading data</Text>
+        <Text className="text-red-500">{translate('user.error_load')}</Text>
       </View>
     );
   }
@@ -28,11 +29,11 @@ export default function Home() {
     <View className="flex-1 bg-white">
       <Stack.Screen
         options={{
-          title: 'User manager',
-          headerBackTitle: 'Feed',
+          title: translate('user.title'),
+          headerBackTitle: translate('user.back_title'),
           headerRight: () => (
             <Button
-              label="New User"
+              label={translate('user.new')}
               size="default"
               className="mr-5 bg-primary-500"
             />

@@ -7,18 +7,19 @@ import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import * as z from 'zod';
 
 import { Button, ControlledInput, Text, View } from '@/components/ui';
+import { translate } from '@/lib/i18n';
 
 const schema = z.object({
   email: z
     .string({
-      required_error: 'Email is required',
+      required_error: translate('login.errors.email_required'),
     })
-    .email('Invalid email format'),
+    .email(translate('login.errors.email_invalid')),
   password: z
     .string({
-      required_error: 'Password is required',
+      required_error: translate('login.errors.password_required'),
     })
-    .min(6, 'Password must be at least 6 characters'),
+    .min(6, translate('login.errors.password_min')),
 });
 
 export type FormType = z.infer<typeof schema>;
@@ -35,6 +36,7 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
       password: Env.APP_ENV === 'development' ? '123456' : '',
     },
   });
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -42,25 +44,25 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
       keyboardVerticalOffset={10}
     >
       <View className="flex-1 justify-center p-4">
-        <View className="mb-6 items-center justify-center ">
+        <View className="mb-6 items-center justify-center">
           <Text
             testID="form-title"
             className="pb-6 text-center text-4xl font-bold"
           >
-            Sign In
+            {translate('login.title')}
           </Text>
 
           {Env.APP_ENV === 'development' && (
             <>
               <Text className="max-w-xs text-center text-gray-500">
-                Welcome! 👋 This is a demo login screen!
+                {translate('login.demo_message')}
               </Text>
               <View className="items-start">
                 <Text className="max-w-xs text-left text-gray-500">
-                  Email demo is admin@gmail.com
+                  {translate('login.demo_email')}
                 </Text>
                 <Text className="max-w-xs text-left text-gray-500">
-                  Password demo is 123456
+                  {translate('login.demo_password')}
                 </Text>
               </View>
             </>
@@ -71,20 +73,20 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
           testID="email-input"
           control={control}
           name="email"
-          label="Email"
+          label={translate('login.form.email')}
         />
         <ControlledInput
           testID="password-input"
           control={control}
           name="password"
-          label="Password"
+          label={translate('login.form.password')}
           placeholder="******"
           secureTextEntry={true}
         />
         <Button
           className="bg-primary-500"
           testID="login-button"
-          label="Login"
+          label={translate('login.button')}
           onPress={handleSubmit(onSubmit)}
         />
       </View>

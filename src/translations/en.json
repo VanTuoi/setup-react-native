@@ -1,4 +1,26 @@
 {
+  "layout": {
+    "create": "Create",
+    "settings_tab": "Settings",
+    "user_tab": "User"
+  },
+  "login": {
+    "button": "Login",
+    "demo_email": "Email demo is admin@gmail.com",
+    "demo_message": "Welcome! 👋 This is a demo login screen!",
+    "demo_password": "Password demo is 123456",
+    "errors": {
+      "email_invalid": "Invalid email format",
+      "email_required": "Email is required",
+      "password_min": "Password must be at least 6 characters",
+      "password_required": "Password is required"
+    },
+    "form": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "title": "Sign In"
+  },
   "onboarding": {
     "message": "Welcome to obytes app site"
   },
@@ -6,7 +28,6 @@
     "about": "About",
     "app_name": "App Name",
     "arabic": "Arabic",
-    "vietnamese": "Vietnamese",
     "english": "English",
     "generale": "General",
     "language": "Language",
@@ -18,7 +39,19 @@
       "title": "Theme"
     },
     "title": "Settings",
-    "version": "Version"
+    "version": "Version",
+    "vietnamese": "Vietnamese"
+  },
+  "user": {
+    "back_title": "User",
+    "error_load": "Error when loading data",
+    "header": {
+      "email": "Email",
+      "full_name": "Full Name",
+      "id": "ID"
+    },
+    "new": "New User",
+    "title": "User Manager"
   },
   "welcome": "Welcome to obytes app site"
 }

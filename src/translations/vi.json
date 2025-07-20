@@ -1,4 +1,26 @@
 {
+  "layout": {
+    "create": "Tạo",
+    "settings_tab": "Cài đặt",
+    "user_tab": "Người dùng"
+  },
+  "login": {
+    "button": "Đăng nhập",
+    "demo_email": "Email demo là admin@gmail.com",
+    "demo_message": "Chào mừng! 👋 Đây là màn hình đăng nhập demo!",
+    "demo_password": "Mật khẩu demo là 123456",
+    "errors": {
+      "email_invalid": "Định dạng email không hợp lệ",
+      "email_required": "Email là bắt buộc",
+      "password_min": "Mật khẩu phải có ít nhất 6 ký tự",
+      "password_required": "Mật khẩu là bắt buộc"
+    },
+    "form": {
+      "email": "Email",
+      "password": "Mật khẩu"
+    },
+    "title": "Đăng nhập"
+  },
   "onboarding": {
     "message": "Chào mừng bạn đến với ứng dụng của tôi"
   },
@@ -6,10 +28,9 @@
     "about": "Giới thiệu",
     "app_name": "Tên ứng dụng",
     "arabic": "Tiếng Ả Rập",
-    "vietnamese": "Tiếng Việt",
     "english": "Tiếng Anh",
-    "language": "Ngôn ngữ",
     "generale": "Chung",
+    "language": "Ngôn ngữ",
     "logout": "Đăng xuất",
     "theme": {
       "dark": "Tối",
@@ -18,7 +39,19 @@
       "title": "Chủ đề"
     },
     "title": "Cài đặt",
-    "version": "Phiên bản"
+    "version": "Phiên bản",
+    "vietnamese": "Tiếng Việt"
+  },
+  "user": {
+    "back_title": "Người dùng",
+    "error_load": "Lỗi khi tải dữ liệu",
+    "header": {
+      "email": "Email",
+      "full_name": "Họ và tên",
+      "id": "ID"
+    },
+    "new": "Người dùng mới",
+    "title": "Quản lý người dùng"
   },
   "welcome": "Chào mừng bạn đến với trang ứng dụng Obytes"
 }
