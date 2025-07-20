@@ -13,37 +13,33 @@ import {
   ActivityIndicator,
   Button,
   FocusAwareStatusBar,
-  Image,
   Input,
   Text,
   View,
 } from '@/components/ui';
 
 const formSchema = z.object({
-  id: z.number(),
-  firstName: z.string().min(1),
-  lastName: z.string().min(1),
+  id: z.string(),
+  name: z.string().min(1),
   email: z.string().email(),
   phone: z.string().min(6),
-  birthDate: z.string(),
-  username: z.string(),
-  image: z.string().url(),
+  gender: z.string().min(1),
+  status: z.enum(['active', 'block', 'graduated']),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
 export default function EditUser() {
   const router = useRouter();
-  const local = useLocalSearchParams<{ id: string }>();
+  const { id } = useLocalSearchParams<{ id: string }>();
   const { mutate, isPending: loadingUpdate } = useUpdateUser();
 
   const {
     data,
     isPending: isLoadingGet,
     isError,
-  } = useUser({
-    variables: { id: local.id },
-  });
+  } = useUser({ variables: { id } });
+
   const {
     control,
     handleSubmit,
@@ -52,26 +48,24 @@ export default function EditUser() {
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
+      id: '',
+      name: '',
       email: '',
       phone: '',
-      birthDate: '',
-      username: '',
-      image: '',
+      gender: '',
+      status: 'active',
     },
   });
 
   useEffect(() => {
-    if (data) {
-      setValue('id', data.id);
-      setValue('firstName', data.firstName);
-      setValue('lastName', data.lastName);
-      setValue('email', data.email);
-      setValue('phone', data.phone);
-      setValue('birthDate', data.birthDate);
-      setValue('username', data.username);
-      setValue('image', data.image);
+    if (data?.data) {
+      const user = data.data;
+      setValue('id', user.id);
+      setValue('name', user.name);
+      setValue('email', user.email);
+      setValue('phone', user.phone);
+      setValue('gender', user.gender);
+      setValue('status', user.status);
     }
   }, [data]);
 
@@ -80,7 +74,7 @@ export default function EditUser() {
       onSuccess: () => {
         showMessage({
           message: 'Success!',
-          description: 'The User status has been updated.',
+          description: 'The User has been updated.',
           type: 'success',
           backgroundColor: '#22c55e',
           color: '#fff',
@@ -92,7 +86,7 @@ export default function EditUser() {
       onError: (err) => {
         showMessage({
           message: 'Error!',
-          description: 'The User has been updated.',
+          description: 'Failed to update user.',
           type: 'danger',
           backgroundColor: '#ef4444',
           color: '#fff',
@@ -112,7 +106,7 @@ export default function EditUser() {
     );
   }
 
-  if (isError || !data) {
+  if (isError || !data?.data) {
     return (
       <View className="flex-1 items-center justify-center">
         <Text>Error loading User</Text>
@@ -124,61 +118,38 @@ export default function EditUser() {
     <ScrollView className="flex-1 p-4">
       <Stack.Screen
         options={{
-          title: `Edit ${data.firstName + data.lastName}`,
+          title: `Edit ${data.data.name}`,
           headerBackTitle: 'Back',
         }}
       />
       <FocusAwareStatusBar />
 
-      <View className="items-center space-y-4">
-        <Controller
-          control={control}
-          name="image"
-          render={({ field: { value } }) => (
-            <>
-              <Image
-                source={{ uri: value }}
-                className="size-40 rounded-xl"
-                style={{ resizeMode: 'cover' }}
-              />
-            </>
-          )}
-        />
-      </View>
-
       <View className="mt-6 space-y-3">
-        {(
-          [
-            'firstName',
-            'lastName',
-            'email',
-            'phone',
-            'username',
-            'birthDate',
-          ] as const
-        ).map((field) => (
-          <Controller
-            key={field}
-            control={control}
-            name={field}
-            render={({ field: { onChange, value } }) => (
-              <View>
-                <Text className="mb-1 font-semibold capitalize">{field}</Text>
-                <Input value={value} onChangeText={onChange} />
-                {errors[field] && (
-                  <Text className="text-xs text-red-500">
-                    {errors[field]?.message?.toString()}
-                  </Text>
-                )}
-              </View>
-            )}
-          />
-        ))}
+        {(['name', 'email', 'phone', 'gender', 'status'] as const).map(
+          (field) => (
+            <Controller
+              key={field}
+              control={control}
+              name={field}
+              render={({ field: { onChange, value } }) => (
+                <View>
+                  <Text className="mb-1 font-semibold capitalize">{field}</Text>
+                  <Input value={value} onChangeText={onChange} />
+                  {errors[field] && (
+                    <Text className="text-xs text-red-500">
+                      {errors[field]?.message?.toString()}
+                    </Text>
+                  )}
+                </View>
+              )}
+            />
+          )
+        )}
       </View>
 
       <Button
         loading={loadingUpdate}
-        disabled={isSubmitted && (loadingUpdate || isValid)}
+        disabled={isSubmitted && (loadingUpdate || !isValid)}
         className="mt-6"
         label="Save"
         onPress={handleSubmit(onSubmit)}

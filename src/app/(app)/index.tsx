@@ -1,5 +1,5 @@
 import { FlashList } from '@shopify/flash-list';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import React from 'react';
 
 import { useUsers } from '@/api/user';
@@ -15,7 +15,8 @@ import { UserItem } from '@/components/user/item';
 import { translate } from '@/lib/i18n';
 
 export default function Home() {
-  const { data, isPending, isError } = useUsers();
+  const { data, isPending, isError, refetch } = useUsers();
+  const router = useRouter();
 
   if (isError) {
     return (
@@ -33,6 +34,7 @@ export default function Home() {
           headerBackTitle: translate('user.back_title'),
           headerRight: () => (
             <Button
+              onPress={() => router.push('/user/add-user')}
               label={translate('user.new')}
               size="default"
               className="mr-5 bg-primary-500"
@@ -43,11 +45,13 @@ export default function Home() {
       <FocusAwareStatusBar />
       {renderHeader()}
       <FlashList
-        data={data?.users}
+        data={data?.data}
         renderItem={({ item }) => <UserItem item={item} />}
-        keyExtractor={(item) => item.username}
+        keyExtractor={(item) => item.id}
         ListEmptyComponent={<EmptyList isLoading={isPending} />}
         estimatedItemSize={60}
+        refreshing={isPending}
+        onRefresh={() => refetch()}
       />
     </View>
   );

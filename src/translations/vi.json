@@ -1,4 +1,13 @@
 {
+  "detail_user": {
+    "email": "Email",
+    "error_load": "Lỗi khi tải dữ liệu",
+    "full_name": "Họ và tên",
+    "gender": "Giới tính",
+    "id": "ID",
+    "phone": "Số điện thoại",
+    "status": "Trạng thái"
+  },
   "layout": {
     "create": "Tạo",
     "settings_tab": "Cài đặt",
@@ -48,7 +57,8 @@
     "header": {
       "email": "Email",
       "full_name": "Họ và tên",
-      "id": "ID"
+      "id": "ID",
+      "status": "Trạng thái"
     },
     "new": "Người dùng mới",
     "title": "Quản lý người dùng"

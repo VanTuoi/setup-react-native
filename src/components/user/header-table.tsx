@@ -4,7 +4,7 @@ import { translate } from '@/lib/i18n';
 
 export const renderHeader = () => (
   <View className="flex-row border-b border-gray-200 bg-gray-200 px-0 py-2">
-    <View className="items-left flex-[1] justify-center pl-2">
+    <View className="items-left flex-[2] justify-center pl-2">
       <Text className="text-md font-bold text-black">
         {translate('user.header.id')}
       </Text>
@@ -14,9 +14,14 @@ export const renderHeader = () => (
         {translate('user.header.full_name')}
       </Text>
     </View>
-    <View className="flex-[4] items-center justify-center">
+    <View className="flex-[3] items-center justify-center">
       <Text className="text-md font-bold text-black">
         {translate('user.header.email')}
+      </Text>
+    </View>
+    <View className="flex-[2] items-center justify-center">
+      <Text className="text-md font-bold text-black">
+        {translate('user.header.status')}
       </Text>
     </View>
   </View>

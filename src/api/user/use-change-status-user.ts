@@ -1,22 +1,26 @@
 import type { AxiosError } from 'axios';
 import { createMutation } from 'react-query-kit';
 
-import { client } from '../common';
+import { queryClient } from '../common';
+import type { ResponseData } from '../types';
+import { changeStatusUserMock } from './mock';
+import type { User } from './types';
 
 type Variables = {
   id: string;
   status: 'active' | 'block' | 'graduated';
 };
+type Response = ResponseData<User>;
 
 export const useChangeStatusUser = createMutation<
   Response,
   Variables,
   AxiosError
 >({
-  mutationFn: async ({ id, status }) =>
-    client({
-      url: `/user/${id}/status`,
-      method: 'PATCH',
-      data: { status },
-    }).then((response) => response.data.data),
+  mutationFn: async ({ id, status }) => {
+    return await changeStatusUserMock(id, status);
+  },
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ['users'] });
+  },
 });
