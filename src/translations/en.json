@@ -6,7 +6,7 @@
   },
   "login": {
     "button": "Login",
-    "demo_email": "Email demo is admin@gmail.com",
+    "demo_email": "Email demo is admin@example.com",
     "demo_message": "Welcome! 👋 This is a demo login screen!",
     "demo_password": "Password demo is 123456",
     "errors": {
