@@ -1,4 +1,4 @@
-package com.obytes
+package com.obytes.staging
 
 import android.app.Application
 import android.content.res.Configuration

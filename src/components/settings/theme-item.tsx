@@ -5,9 +5,6 @@ import { Options, useModal } from '@/components/ui';
 import type { ColorSchemeType } from '@/lib';
 import { translate, useSelectedTheme } from '@/lib';
 
-import { Settings } from '../ui/icons';
-import { Moon } from '../ui/icons/moon';
-import { Sun } from '../ui/icons/sun';
 import { Item } from './item';
 
 export const ThemeItem = () => {
@@ -27,17 +24,14 @@ export const ThemeItem = () => {
       {
         label: `${translate('settings.theme.dark')}`,
         value: 'dark',
-        icon: <Moon className="size-5" />,
       },
       {
         label: `${translate('settings.theme.light')}`,
         value: 'light',
-        icon: <Sun className="size-5" />,
       },
       {
         label: `${translate('settings.theme.system')}`,
         value: 'system',
-        icon: <Settings className="size-5" />,
       },
     ],
     []
@@ -53,7 +47,6 @@ export const ThemeItem = () => {
       <Item
         text="settings.theme.title"
         value={theme?.label}
-        icon={theme?.icon}
         onPress={modal.present}
       />
 
