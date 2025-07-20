@@ -16,7 +16,7 @@ const _useAuth = create<AuthState>((set, get) => ({
   status: 'idle',
   token: null,
   signIn: (token) => {
-    setToken(token);
+    setToken(token, true);
     set({ status: 'signIn', token });
   },
   signOut: () => {

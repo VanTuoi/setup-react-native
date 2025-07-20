@@ -6,7 +6,7 @@
   },
   "login": {
     "button": "Đăng nhập",
-    "demo_email": "Email demo là admin@gmail.com",
+    "demo_email": "Email demo là admin@example.com",
     "demo_message": "Chào mừng! 👋 Đây là màn hình đăng nhập demo!",
     "demo_password": "Mật khẩu demo là 123456",
     "errors": {

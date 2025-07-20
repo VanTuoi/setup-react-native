@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { Env } from '@env';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
@@ -26,13 +27,17 @@ export type FormType = z.infer<typeof schema>;
 
 export type LoginFormProps = {
   onSubmit?: SubmitHandler<FormType>;
+  errorMessage?: string | null;
 };
 
-export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
+export const LoginForm = ({
+  onSubmit = () => {},
+  errorMessage,
+}: LoginFormProps) => {
   const { handleSubmit, control } = useForm<FormType>({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: Env.APP_ENV === 'development' ? 'admin@gmail.com' : '',
+      email: Env.APP_ENV === 'development' ? 'admin@example.com' : '',
       password: Env.APP_ENV === 'development' ? '123456' : '',
     },
   });
@@ -45,23 +50,20 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
     >
       <View className="flex-1 justify-center p-4">
         <View className="mb-6 items-center justify-center">
-          <Text
-            testID="form-title"
-            className="pb-6 text-center text-4xl font-bold"
-          >
+          <Text className="pb-6 text-center text-4xl font-bold">
             {translate('login.title')}
           </Text>
 
           {Env.APP_ENV === 'development' && (
             <>
-              <Text className="max-w-xs text-center text-gray-500">
+              <Text className="text-center text-gray-500">
                 {translate('login.demo_message')}
               </Text>
               <View className="items-start">
-                <Text className="max-w-xs text-left text-gray-500">
+                <Text className="text-left text-gray-500">
                   {translate('login.demo_email')}
                 </Text>
-                <Text className="max-w-xs text-left text-gray-500">
+                <Text className="text-left text-gray-500">
                   {translate('login.demo_password')}
                 </Text>
               </View>
@@ -81,8 +83,11 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
           name="password"
           label={translate('login.form.password')}
           placeholder="******"
-          secureTextEntry={true}
+          secureTextEntry
         />
+        {errorMessage && (
+          <Text className="mb-4 text-left text-red-500">{errorMessage}</Text>
+        )}
         <Button
           className="bg-primary-500"
           testID="login-button"
