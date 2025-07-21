@@ -1,3 +1,4 @@
+import { delay } from '@/lib';
 import { getItem, setItem } from '@/lib/storage';
 
 import { type ResponseData } from '../types';
@@ -31,10 +32,6 @@ const mockUsers: User[] = [
     status: 'block',
   },
 ];
-
-function delay(ms: number) {
-  return new Promise<void>((resolve) => setTimeout(resolve, ms));
-}
 
 export async function getUsersMock(): Promise<ResponseData<User[]>> {
   let users = getItem<User[]>(KEY);

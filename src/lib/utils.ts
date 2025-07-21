@@ -20,3 +20,7 @@ export const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 
   return store;
 };
+
+export function delay(ms: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, ms));
+}

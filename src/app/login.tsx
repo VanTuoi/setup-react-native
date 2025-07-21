@@ -39,7 +39,11 @@ export default function Login() {
   return (
     <>
       <FocusAwareStatusBar />
-      <LoginForm onSubmit={onSubmit} errorMessage={errorMsg} />
+      <LoginForm
+        onSubmit={onSubmit}
+        errorMessage={errorMsg}
+        isLoading={loginMutation.isPending}
+      />
     </>
   );
 }
