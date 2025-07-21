@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import * as z from 'zod';
 
-import { Button, ControlledInput, Text, View } from '@/components/ui';
+import { Button, ControlledInput, Image, Text, View } from '@/components/ui';
 import { translate } from '@/lib/i18n';
 
 const schema = z.object({
@@ -28,11 +28,13 @@ export type FormType = z.infer<typeof schema>;
 export type LoginFormProps = {
   onSubmit?: SubmitHandler<FormType>;
   errorMessage?: string | null;
+  isLoading?: boolean;
 };
 
 export const LoginForm = ({
   onSubmit = () => {},
   errorMessage,
+  isLoading,
 }: LoginFormProps) => {
   const { handleSubmit, control } = useForm<FormType>({
     resolver: zodResolver(schema),
@@ -53,13 +55,17 @@ export const LoginForm = ({
           <Text className="pb-6 text-center text-4xl font-bold">
             {translate('login.title')}
           </Text>
+          <Image
+            source={require('@/assets/online.png')}
+            style={{ width: 250, height: 250 }}
+          />
 
           {Env.APP_ENV === 'development' && (
             <>
-              <Text className="text-center text-gray-500">
+              <Text className="w-full text-start text-gray-500">
                 {translate('login.demo_message')}
               </Text>
-              <View className="items-start">
+              <View className="w-full items-start">
                 <Text className="text-left text-gray-500">
                   {translate('login.demo_email')}
                 </Text>
@@ -89,7 +95,9 @@ export const LoginForm = ({
           <Text className="mb-4 text-left text-red-500">{errorMessage}</Text>
         )}
         <Button
-          className="bg-primary-500"
+          loading={isLoading}
+          size="lg"
+          className="mt-8 bg-primary-500"
           testID="login-button"
           label={translate('login.button')}
           onPress={handleSubmit(onSubmit)}
