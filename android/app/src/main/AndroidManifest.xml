@@ -27,7 +27,6 @@
         <data android:scheme="obytesApp"/>
         <data android:scheme="com.obytes.development"/>
         <data android:scheme="exp+obytesapp-rf9no-yqkzflvci64dfw"/>
-        <data android:scheme="com.obytes.staging"/>
       </intent-filter>
     </activity>
   </application>

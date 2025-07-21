@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import { z } from 'zod';
@@ -13,17 +13,40 @@ import {
   ActivityIndicator,
   Button,
   FocusAwareStatusBar,
-  Input,
   Text,
   View,
 } from '@/components/ui';
+import { UserFormFields } from '@/components/user/user-form-fields';
+import { translate } from '@/lib';
 
 const formSchema = z.object({
   id: z.string(),
-  name: z.string().min(1),
-  email: z.string().email(),
-  phone: z.string().min(6),
-  gender: z.string().min(1),
+  name: z
+    .string()
+    .min(
+      1,
+      `${translate('new_user.form.name')} ${translate('new_user.validate.required')}`
+    ),
+  email: z
+    .string()
+    .email(translate('new_user.validate.email_invalid'))
+    .min(
+      1,
+      `${translate('new_user.form.email')} ${translate('new_user.validate.required')}`
+    ),
+  phone: z
+    .string()
+    .min(6, translate('new_user.validate.phone_min'))
+    .min(
+      1,
+      `${translate('new_user.form.phone')} ${translate('new_user.validate.required')}`
+    ),
+  gender: z
+    .string()
+    .min(
+      1,
+      `${translate('new_user.form.gender')} ${translate('new_user.validate.required')}`
+    ),
   status: z.enum(['active', 'block', 'graduated']),
 });
 
@@ -44,7 +67,7 @@ export default function EditUser() {
     control,
     handleSubmit,
     setValue,
-    formState: { errors, isValid, isSubmitted },
+    formState: { isValid, isSubmitted },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -73,27 +96,22 @@ export default function EditUser() {
     mutate(values, {
       onSuccess: () => {
         showMessage({
-          message: 'Success!',
-          description: 'The User has been updated.',
+          message: translate('new_user.message.create_success'),
           type: 'success',
           backgroundColor: '#22c55e',
           color: '#fff',
           icon: 'success',
-          duration: 3000,
         });
         router.back();
       },
-      onError: (err) => {
+      onError: () => {
         showMessage({
-          message: 'Error!',
-          description: 'Failed to update user.',
+          message: translate('new_user.message.create_fail'),
           type: 'danger',
           backgroundColor: '#ef4444',
           color: '#fff',
           icon: 'danger',
-          duration: 3000,
         });
-        console.log('Update failed:', err);
       },
     });
   };
@@ -109,7 +127,7 @@ export default function EditUser() {
   if (isError || !data?.data) {
     return (
       <View className="flex-1 items-center justify-center">
-        <Text>Error loading User</Text>
+        <Text>Error loading user</Text>
       </View>
     );
   }
@@ -118,40 +136,21 @@ export default function EditUser() {
     <ScrollView className="flex-1 p-4">
       <Stack.Screen
         options={{
-          title: `Edit ${data.data.name}`,
-          headerBackTitle: 'Back',
+          title: translate('edit_user.title'),
+          headerBackTitle: translate('edit_user.back'),
         }}
       />
       <FocusAwareStatusBar />
 
       <View className="mt-6 space-y-3">
-        {(['name', 'email', 'phone', 'gender', 'status'] as const).map(
-          (field) => (
-            <Controller
-              key={field}
-              control={control}
-              name={field}
-              render={({ field: { onChange, value } }) => (
-                <View>
-                  <Text className="mb-1 font-semibold capitalize">{field}</Text>
-                  <Input value={value} onChangeText={onChange} />
-                  {errors[field] && (
-                    <Text className="text-xs text-red-500">
-                      {errors[field]?.message?.toString()}
-                    </Text>
-                  )}
-                </View>
-              )}
-            />
-          )
-        )}
+        <UserFormFields control={control} showId={false} />
       </View>
 
       <Button
         loading={loadingUpdate}
         disabled={isSubmitted && (loadingUpdate || !isValid)}
         className="mt-6"
-        label="Save"
+        label={translate('common.save')}
         onPress={handleSubmit(onSubmit)}
       />
     </ScrollView>

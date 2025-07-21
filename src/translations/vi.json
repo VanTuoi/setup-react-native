@@ -1,12 +1,29 @@
 {
+  "common": {
+    "save": "Lưu"
+  },
   "detail_user": {
+    "delete_user": {
+      "alert": {
+        "body": "Bạn có chắc chắn muốn xóa người dùng này không?",
+        "cancel": "Hủy",
+        "delete": "Xóa",
+        "title": "Xóa người dùng"
+      },
+      "button_label": "Xóa người dùng"
+    },
     "email": "Email",
     "error_load": "Lỗi khi tải dữ liệu",
     "full_name": "Họ và tên",
     "gender": "Giới tính",
     "id": "ID",
     "phone": "Số điện thoại",
-    "status": "Trạng thái"
+    "status": "Trạng thái",
+    "title": "Thông tin người dùng"
+  },
+  "edit_user": {
+    "back": "Quay lại",
+    "title": "Sửa thông tin người dùng"
   },
   "layout": {
     "create": "Tạo",
@@ -29,6 +46,33 @@
       "password": "Mật khẩu"
     },
     "title": "Đăng nhập"
+  },
+  "new_user": {
+    "back": "Người dùng",
+    "form": {
+      "create": "Tạo người dùng",
+      "email": "Email",
+      "gender": "Giới tính",
+      "gender_placeholder": "Chọn giới tính",
+      "id": "Id",
+      "name": "Họ và tên",
+      "phone": "Số điện thoại"
+    },
+    "gender": {
+      "female": "Nữ",
+      "male": "Nam",
+      "other": "Khác"
+    },
+    "message": {
+      "create_fail": "Tạo người dùng thất bại!",
+      "create_success": "Tạo người dùng thành công!"
+    },
+    "title": "Thêm người dùng",
+    "validate": {
+      "email_invalid": "Email không hợp lệ",
+      "phone_min": "Số điện thoại phải từ 6 ký tự",
+      "required": "là bắt buộc"
+    }
   },
   "onboarding": {
     "message": "Chào mừng bạn đến với ứng dụng của tôi"

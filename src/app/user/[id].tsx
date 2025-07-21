@@ -75,7 +75,7 @@ export default function User() {
       className="flex-1 p-4"
       contentContainerStyle={{ paddingBottom: 40 }}
     >
-      {renderHeader(data.name)}
+      {renderHeader(translate('detail_user.title'))}
       <FocusAwareStatusBar />
 
       <View className="flex flex-col items-start gap-4">
@@ -118,16 +118,19 @@ export default function User() {
       </View>
       <View className="mt-10 w-full">
         <Button
-          label="Delete User"
+          label={translate('detail_user.delete_user.button_label')}
           size="default"
           onPress={() => {
             Alert.alert(
-              'Delete User',
-              'Are you sure you want to delete this user?',
+              translate('detail_user.delete_user.alert.title'),
+              translate('detail_user.delete_user.alert.body'),
               [
-                { text: 'Cancel', style: 'cancel' },
                 {
-                  text: 'Delete',
+                  text: translate('detail_user.delete_user.alert.cancel'),
+                  style: 'cancel',
+                },
+                {
+                  text: translate('detail_user.delete_user.alert.delete'),
                   style: 'destructive',
                   onPress: () => {
                     deleteMutation.mutate(
