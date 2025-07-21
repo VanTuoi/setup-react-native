@@ -1,4 +1,13 @@
 {
+  "detail_user": {
+    "email": "Email",
+    "error_load": "Error when loading data",
+    "full_name": "Full Name",
+    "gender": "Gender",
+    "id": "ID",
+    "phone": "Phone",
+    "status": "Status"
+  },
   "layout": {
     "create": "Create",
     "settings_tab": "Settings",
@@ -48,7 +57,8 @@
     "header": {
       "email": "Email",
       "full_name": "Full Name",
-      "id": "ID"
+      "id": "ID",
+      "status": "Status"
     },
     "new": "New User",
     "title": "User Manager"
