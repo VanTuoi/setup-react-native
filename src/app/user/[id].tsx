@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as React from 'react';
-import { Alert } from 'react-native';
+import { Alert, useColorScheme } from 'react-native';
 
 import { useDeleteUser, useUser } from '@/api/user';
 import {
@@ -19,6 +19,7 @@ import { translate } from '@/lib';
 export default function User() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
+  const theme = useColorScheme();
 
   const userQuery = useUser({
     // @ts-ignore
@@ -41,7 +42,7 @@ export default function User() {
             }}
             className="mr-3"
           >
-            <EditIcon color="black" size={16} />
+            <EditIcon color={theme === 'dark' ? '#fff' : '#000'} size={16} />
           </TouchableOpacity>
         ),
       }}
@@ -75,7 +76,7 @@ export default function User() {
       className="flex-1 p-4"
       contentContainerStyle={{ paddingBottom: 40 }}
     >
-      {renderHeader(data.name)}
+      {renderHeader(translate('detail_user.title'))}
       <FocusAwareStatusBar />
 
       <View className="flex flex-col items-start gap-4">
@@ -118,16 +119,20 @@ export default function User() {
       </View>
       <View className="mt-10 w-full">
         <Button
-          label="Delete User"
+          loading={deleteMutation.isPending}
+          label={translate('detail_user.delete_user.button_label')}
           size="default"
           onPress={() => {
             Alert.alert(
-              'Delete User',
-              'Are you sure you want to delete this user?',
+              translate('detail_user.delete_user.alert.title'),
+              translate('detail_user.delete_user.alert.body'),
               [
-                { text: 'Cancel', style: 'cancel' },
                 {
-                  text: 'Delete',
+                  text: translate('detail_user.delete_user.alert.cancel'),
+                  style: 'cancel',
+                },
+                {
+                  text: translate('detail_user.delete_user.alert.delete'),
                   style: 'destructive',
                   onPress: () => {
                     deleteMutation.mutate(
