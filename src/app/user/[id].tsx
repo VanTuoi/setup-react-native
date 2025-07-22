@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as React from 'react';
-import { Alert } from 'react-native';
+import { Alert, useColorScheme } from 'react-native';
 
 import { useDeleteUser, useUser } from '@/api/user';
 import {
@@ -19,6 +19,7 @@ import { translate } from '@/lib';
 export default function User() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
+  const theme = useColorScheme();
 
   const userQuery = useUser({
     // @ts-ignore
@@ -41,7 +42,7 @@ export default function User() {
             }}
             className="mr-3"
           >
-            <EditIcon color="black" size={16} />
+            <EditIcon color={theme === 'dark' ? '#fff' : '#000'} size={16} />
           </TouchableOpacity>
         ),
       }}
@@ -118,6 +119,7 @@ export default function User() {
       </View>
       <View className="mt-10 w-full">
         <Button
+          loading={deleteMutation.isPending}
           label={translate('detail_user.delete_user.button_label')}
           size="default"
           onPress={() => {

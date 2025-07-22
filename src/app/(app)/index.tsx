@@ -27,7 +27,7 @@ export default function Home() {
   }
 
   return (
-    <View className="flex-1 bg-white">
+    <View className="flex-1 bg-white dark:bg-black">
       <Stack.Screen
         options={{
           title: translate('user.title'),
