@@ -25,7 +25,7 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="obytesApp"/>
-        <data android:scheme="com.obytes.development"/>
+        <data android:scheme="com.obytes.staging"/>
         <data android:scheme="exp+obytesapp-rf9no-yqkzflvci64dfw"/>
       </intent-filter>
     </activity>

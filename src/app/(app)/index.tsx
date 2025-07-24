@@ -2,7 +2,7 @@ import { FlashList } from '@shopify/flash-list';
 import { useRouter } from 'expo-router';
 import React from 'react';
 
-import { useUsers } from '@/api/user';
+import { type FilterOption, useUsers } from '@/api/user';
 import {
   Button,
   EmptyList,
@@ -16,15 +16,20 @@ import { SearchComponent } from '@/components/user/search';
 import { useQueryParams } from '@/lib';
 import { translate } from '@/lib/i18n';
 
-export default function Home() {
-  const { queryParams } = useQueryParams({ search: '' });
-  const { data, isPending, isError, refetch } = useUsers({
-    variables: {
-      search: queryParams.search,
-    },
-  });
+const defaultFilter: FilterOption = {
+  search: '',
+  sortBy: 'id',
+  sortDirection: 'asc',
+  categoryId: '',
+};
 
+export default function Home() {
   const router = useRouter();
+  const { queryParams } = useQueryParams<FilterOption>(defaultFilter);
+
+  const { data, isPending, isError, refetch } = useUsers({
+    variables: queryParams,
+  });
 
   if (isError) {
     return (
@@ -51,7 +56,7 @@ export default function Home() {
       <Button
         onPress={() => router.push('/user/add-user')}
         size="icon"
-        className="absolute bottom-8 right-4 size-16 rounded-full bg-primary-500 shadow-lg"
+        className="absolute bottom-8 right-4 size-16 rounded-full bg-primary-500 shadow-xl dark:bg-primary-400"
       >
         <PlusIcon width={36} height={36} color="white" />
       </Button>

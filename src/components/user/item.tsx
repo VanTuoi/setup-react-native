@@ -43,17 +43,17 @@ export const UserItem = ({ item }: { item: User }) => {
   };
 
   return (
-    <View className="rounded-md border border-gray-200 p-2 dark:border-gray-700 dark:bg-gray-900">
+    <View className="rounded-xl border border-gray-200 p-2 dark:border-gray-800 dark:bg-black">
       <View className="flex-row items-center justify-between">
         <Pressable
           onPress={() => router.push(`/user/${item.id}`)}
           className="flex-1"
         >
           <View className="space-y-1">
-            <Text className="text-sm font-bold text-black dark:text-white">
+            <Text className="text-sm font-bold text-black dark:text-gray-400">
               {`${item.name} (${item.id})`}
             </Text>
-            <Text className="text-sm text-black dark:text-white">
+            <Text className="text-sm text-black dark:text-gray-400">
               {item.email}
             </Text>
           </View>
@@ -71,7 +71,7 @@ export const UserItem = ({ item }: { item: User }) => {
 
       {showDetail && (
         <Animated.View style={[detailAnimatedStyle]} className="mt-2 space-y-1">
-          <Text className="text-sm text-black dark:text-white">
+          <Text className="text-sm text-black dark:text-gray-400">
             {item.phone}
           </Text>
         </Animated.View>

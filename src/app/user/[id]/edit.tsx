@@ -133,26 +133,34 @@ export default function EditUser() {
   }
 
   return (
-    <ScrollView className="flex-1 p-4">
-      <Stack.Screen
-        options={{
-          title: translate('edit_user.title'),
-          headerBackTitle: translate('edit_user.back'),
-        }}
-      />
-      <FocusAwareStatusBar />
+    <View className="flex-1">
+      <ScrollView
+        className="flex-1 p-4"
+        contentContainerStyle={{ paddingBottom: 80 }}
+      >
+        <Stack.Screen
+          options={{
+            title: translate('edit_user.title'),
+            headerBackTitle: translate('edit_user.back'),
+          }}
+        />
+        <FocusAwareStatusBar />
 
-      <View className="mt-6 space-y-3">
-        <UserFormFields control={control} showId={false} />
+        <View className="mt-6 space-y-3">
+          <UserFormFields control={control} isEdit={true} />
+        </View>
+      </ScrollView>
+
+      <View className="absolute inset-x-0 bottom-0  p-4">
+        <Button
+          className="bg-green-500 dark:bg-green-700"
+          textClassName="text-white font-bold dark:text-white"
+          loading={loadingUpdate}
+          disabled={isSubmitted && (loadingUpdate || !isValid)}
+          label={translate('common.save')}
+          onPress={handleSubmit(onSubmit)}
+        />
       </View>
-
-      <Button
-        loading={loadingUpdate}
-        disabled={isSubmitted && (loadingUpdate || !isValid)}
-        className="mt-6"
-        label={translate('common.save')}
-        onPress={handleSubmit(onSubmit)}
-      />
-    </ScrollView>
+    </View>
   );
 }

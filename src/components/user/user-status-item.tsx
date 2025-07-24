@@ -44,8 +44,7 @@ export const UserStatusItem = ({ User }: Props) => {
           onSuccess: () => {
             modalRef.current?.dismiss();
             showMessage({
-              message: 'Success!',
-              description: 'The User status has been updated.',
+              message: 'The User status has been updated.',
               type: 'success',
               backgroundColor: '#22c55e',
               color: '#fff',
@@ -55,8 +54,7 @@ export const UserStatusItem = ({ User }: Props) => {
           },
           onError: () => {
             showMessage({
-              message: 'Error!',
-              description: 'The User status has not been updated.',
+              message: 'The User status has not been updated.',
               type: 'danger',
               backgroundColor: '#ef4444',
               color: '#fff',
@@ -76,7 +74,7 @@ export const UserStatusItem = ({ User }: Props) => {
   return (
     <>
       <Pressable
-        className={`w-[80px] rounded-md px-3 py-2 ${statusColors[User.status]} flex-row items-center justify-center`}
+        className={`w-[80px] rounded-lg px-3 py-2 ${statusColors[User.status]} flex-row items-center justify-center`}
         onPress={() => modalRef.current?.present()}
         disabled={changeStatus.isPending}
       >

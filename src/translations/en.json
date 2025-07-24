@@ -1,5 +1,6 @@
 {
   "common": {
+    "no_data": "Sorry! No data found",
     "save": "Save"
   },
   "detail_user": {

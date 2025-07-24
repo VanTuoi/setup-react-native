@@ -8,7 +8,7 @@ import { showMessage } from 'react-native-flash-message';
 import { z } from 'zod';
 
 import { useCreateUser } from '@/api';
-import { Button, FocusAwareStatusBar } from '@/components/ui';
+import { Button, FocusAwareStatusBar, View } from '@/components/ui';
 import { UserFormFields } from '@/components/user/user-form-fields';
 import { translate } from '@/lib';
 
@@ -62,7 +62,7 @@ export default function AddUser() {
   const {
     control,
     handleSubmit,
-    formState: { isValid, isSubmitted },
+    formState: { isValid },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -70,7 +70,7 @@ export default function AddUser() {
       name: '',
       email: '',
       phone: '',
-      gender: '',
+      gender: 'other',
       status: 'active',
     },
   });
@@ -100,24 +100,32 @@ export default function AddUser() {
   };
 
   return (
-    <ScrollView className="flex-1 p-4">
-      <Stack.Screen
-        options={{
-          title: translate('new_user.title'),
-          headerBackTitle: translate('new_user.back'),
-        }}
-      />
-      <FocusAwareStatusBar />
+    <View className="flex-1">
+      <ScrollView
+        className="flex-1 p-4"
+        contentContainerStyle={{ paddingBottom: 80 }}
+      >
+        <Stack.Screen
+          options={{
+            title: translate('new_user.title'),
+            headerBackTitle: translate('new_user.back'),
+          }}
+        />
+        <FocusAwareStatusBar />
 
-      <UserFormFields control={control} />
+        <UserFormFields control={control} />
+      </ScrollView>
 
-      <Button
-        loading={loadingCreate}
-        disabled={isSubmitted && (loadingCreate || !isValid)}
-        className="mt-6"
-        label={translate('new_user.form.create')}
-        onPress={handleSubmit(onSubmit)}
-      />
-    </ScrollView>
+      <View className="absolute inset-x-0 bottom-0 p-4">
+        <Button
+          variant="secondary"
+          textClassName="text-white font-bold"
+          loading={loadingCreate}
+          disabled={loadingCreate || !isValid}
+          label={translate('new_user.form.create')}
+          onPress={handleSubmit(onSubmit)}
+        />
+      </View>
+    </View>
   );
 }
