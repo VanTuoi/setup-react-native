@@ -33,6 +33,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
+          headerShown: false,
           title: translate('layout.user_tab'),
           tabBarIcon: ({ color }) => <FeedIcon color={color} />,
           tabBarButtonTestID: 'user-tab',
@@ -41,8 +42,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="settings"
         options={{
-          title: translate('layout.settings_tab'),
           headerShown: false,
+          title: translate('layout.settings_tab'),
           tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
           tabBarButtonTestID: 'settings-tab',
         }}

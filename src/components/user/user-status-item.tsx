@@ -76,7 +76,7 @@ export const UserStatusItem = ({ User }: Props) => {
   return (
     <>
       <Pressable
-        className={`rounded-md px-3 py-2 ${statusColors[User.status]} flex-row items-center justify-center`}
+        className={`w-[80px] rounded-md px-3 py-2 ${statusColors[User.status]} flex-row items-center justify-center`}
         onPress={() => modalRef.current?.present()}
         disabled={changeStatus.isPending}
       >
