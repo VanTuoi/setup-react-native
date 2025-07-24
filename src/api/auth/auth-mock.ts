@@ -1,7 +1,9 @@
-import { delay } from '@/lib';
-
-import { type LoginResponse } from '../auth/type';
 import { type ResponseData } from '../types';
+import { type LoginResponse } from './type';
+
+function delay(ms: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, ms));
+}
 
 export async function loginMock({
   email,

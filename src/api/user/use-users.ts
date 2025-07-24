@@ -2,15 +2,15 @@ import type { AxiosError } from 'axios';
 import { createQuery } from 'react-query-kit';
 
 import { type ResponseData } from '../types';
-import { getUsersMock } from './mock';
 import type { User } from './types';
+import { getUsersMock } from './user-mock';
 
 type Response = ResponseData<User[]>;
-type Variables = void;
+type Variables = { search?: string };
 
 export const useUsers = createQuery<Response, Variables, AxiosError>({
   queryKey: ['users'],
-  fetcher: async () => {
-    return await getUsersMock();
+  fetcher: async ({ search }) => {
+    return await getUsersMock({ search });
   },
 });

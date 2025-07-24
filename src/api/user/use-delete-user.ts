@@ -3,7 +3,7 @@ import { createMutation } from 'react-query-kit';
 
 import { queryClient } from '../common';
 import type { ResponseData } from '../types';
-import { deleteUserMock } from './mock';
+import { deleteUserMock } from './user-mock';
 
 type Variables = { id: string };
 type Response = ResponseData<null>;

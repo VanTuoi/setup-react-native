@@ -1,33 +1,111 @@
 {
+  "common": {
+    "save": "حفظ"
+  },
+  "detail_user": {
+    "delete_user": {
+      "alert": {
+        "body": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟",
+        "cancel": "إلغاء",
+        "delete": "حذف",
+        "title": "حذف المستخدم"
+      },
+      "button_label": "حذف المستخدم"
+    },
+    "email": "البريد الإلكتروني",
+    "error_load": "خطأ أثناء تحميل البيانات",
+    "full_name": "الاسم الكامل",
+    "gender": "الجنس",
+    "id": "المعرف",
+    "phone": "رقم الهاتف",
+    "status": "الحالة",
+    "title": "تفاصيل المستخدم"
+  },
+  "edit_user": {
+    "back": "رجوع",
+    "title": "تعديل المستخدم"
+  },
+  "layout": {
+    "create": "إنشاء",
+    "settings_tab": "الإعدادات",
+    "user_tab": "المستخدم"
+  },
+  "login": {
+    "button": "تسجيل الدخول",
+    "demo_email": "البريد الإلكتروني التجريبي هو admin@example.com",
+    "demo_message": "مرحبًا! 👋 هذه شاشة تسجيل دخول تجريبية!",
+    "demo_password": "كلمة المرور التجريبية هي 123456",
+    "errors": {
+      "email_invalid": "تنسيق البريد الإلكتروني غير صالح",
+      "email_required": "البريد الإلكتروني مطلوب",
+      "password_min": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+      "password_required": "كلمة المرور مطلوبة"
+    },
+    "form": {
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور"
+    },
+    "title": "تسجيل الدخول"
+  },
+  "new_user": {
+    "back": "المستخدمون",
+    "form": {
+      "create": "إنشاء مستخدم",
+      "email": "البريد الإلكتروني",
+      "gender": "الجنس",
+      "gender_placeholder": "اختر الجنس",
+      "id": "المعرف",
+      "name": "الاسم الكامل",
+      "phone": "رقم الهاتف"
+    },
+    "gender": {
+      "female": "أنثى",
+      "male": "ذكر",
+      "other": "آخر"
+    },
+    "message": {
+      "create_fail": "فشل في إنشاء المستخدم!",
+      "create_success": "تم إنشاء المستخدم بنجاح!"
+    },
+    "title": "إضافة مستخدم",
+    "validate": {
+      "email_invalid": "البريد الإلكتروني غير صالح",
+      "phone_min": "يجب أن يكون رقم الهاتف 6 أرقام على الأقل",
+      "required": "مطلوب"
+    }
+  },
   "onboarding": {
-    "message": "مرحبا بكم في موقع تطبيق obytes"
+    "message": "مرحبًا بك في موقع تطبيق obytes"
   },
   "settings": {
-    "about": "حول التطبيق ",
+    "about": "حول",
     "app_name": "اسم التطبيق",
-    "arabic": "عربي",
-    "english": "إنجليزي",
+    "arabic": "العربية",
+    "english": "الإنجليزية",
     "generale": "عام",
-    "github": "جيثب",
-    "language": "لغة",
-    "links": "الروابط",
-    "logout": "تسجيل خروج",
-    "more": "أكثر",
-    "privacy": "سياسة الخصوصية",
-    "rate": "تقييم",
-    "share": "شارك",
-    "support": "الدعم",
-    "support_us": "ادعمنا",
-    "terms": "شروط الخدمة",
+    "language": "اللغة",
+    "logout": "تسجيل الخروج",
     "theme": {
-      "dark": "مظلم",
-      "light": "خفيفة",
-      "system": "System",
-      "title": "سمة"
+      "dark": "داكن",
+      "light": "فاتح",
+      "system": "النظام",
+      "title": "الثيم"
     },
-    "title": "إعدادات",
-    "version": "إصدار",
-    "website": "موقع الكتروني"
+    "title": "الإعدادات",
+    "version": "الإصدار",
+    "vietnamese": "الفيتنامية"
   },
-  "welcome": "test arabic"
+  "user": {
+    "back_title": "المستخدم",
+    "error_load": "خطأ أثناء تحميل البيانات",
+    "header": {
+      "email": "البريد الإلكتروني",
+      "full_name": "الاسم الكامل",
+      "id": "المعرف",
+      "status": "الحالة"
+    },
+    "new": "مستخدم جديد",
+    "title": "إدارة المستخدمين"
+  },
+  "welcome": "مرحبًا بك في موقع تطبيق obytes"
 }
