@@ -3,8 +3,8 @@ import { createMutation } from 'react-query-kit';
 
 import { queryClient } from '../common';
 import type { ResponseData } from '../types';
-import { changeStatusUserMock } from './mock';
 import type { User } from './types';
+import { changeStatusUserMock } from './user-mock';
 
 type Variables = {
   id: string;

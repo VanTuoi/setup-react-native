@@ -2,7 +2,7 @@ import type { AxiosError } from 'axios';
 import { createMutation } from 'react-query-kit';
 
 import { type ResponseData } from '../types';
-import { loginMock } from './mock';
+import { loginMock } from './auth-mock';
 import { type LoginResponse } from './type';
 
 type Variables = { email: string; password: string };

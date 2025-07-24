@@ -1,8 +1,11 @@
-import { delay } from '@/lib';
 import { getItem, setItem } from '@/lib/storage';
 
 import { type ResponseData } from '../types';
 import type { User } from './types';
+
+function delay(ms: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, ms));
+}
 
 const KEY = 'mock_users';
 
@@ -33,7 +36,11 @@ const mockUsers: User[] = [
   },
 ];
 
-export async function getUsersMock(): Promise<ResponseData<User[]>> {
+export async function getUsersMock({
+  search,
+}: {
+  search?: string;
+}): Promise<ResponseData<User[]>> {
   let users = getItem<User[]>(KEY);
 
   if (!Array.isArray(users) || users.length === 0) {
@@ -41,10 +48,16 @@ export async function getUsersMock(): Promise<ResponseData<User[]>> {
     await setItem(KEY, users);
   }
 
+  const filteredUsers = search
+    ? users.filter((user) =>
+        user.name.toLowerCase().includes(search.toLowerCase())
+      )
+    : users;
+
   return {
     message: 'Mocked user list',
     success: true,
-    data: users,
+    data: filteredUsers,
   };
 }
 

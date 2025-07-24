@@ -10,12 +10,20 @@ import {
   Text,
   View,
 } from '@/components/ui';
-import { renderHeader } from '@/components/user/header-table';
+import { HeaderTable } from '@/components/user/header-table';
 import { UserItem } from '@/components/user/item';
+import { SearchComponent } from '@/components/user/search';
+import { useQueryParams } from '@/lib';
 import { translate } from '@/lib/i18n';
 
 export default function Home() {
-  const { data, isPending, isError, refetch } = useUsers();
+  const { queryParams } = useQueryParams({ search: '' });
+  const { data, isPending, isError, refetch } = useUsers({
+    variables: {
+      search: queryParams.search,
+    },
+  });
+
   const router = useRouter();
 
   if (isError) {
@@ -43,7 +51,8 @@ export default function Home() {
         }}
       />
       <FocusAwareStatusBar />
-      {renderHeader()}
+      <SearchComponent />
+      <HeaderTable />
       <FlashList
         data={data?.data}
         renderItem={({ item }) => <UserItem item={item} />}
