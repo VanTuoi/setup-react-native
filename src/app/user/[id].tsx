@@ -65,7 +65,7 @@ export default function User() {
         {renderHeader('User')}
         <FocusAwareStatusBar />
         <Text className="text-center text-red-500">
-          {translate('detail_user.error_load')}
+          {translate('common.error_load')}
         </Text>
       </View>
     );

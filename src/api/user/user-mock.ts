@@ -36,7 +36,7 @@ export async function getUsersMock({
 }: {
   search?: string;
 }): Promise<ResponseData<User[]>> {
-  await delay(2000);
+  await delay(1000);
 
   let users = getItem<User[]>(KEY);
 

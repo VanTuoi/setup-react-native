@@ -43,7 +43,7 @@ export const UserItem = ({ item }: { item: User }) => {
   };
 
   return (
-    <View className="rounded-xl border border-gray-200 p-2 dark:border-gray-800 dark:bg-black">
+    <View className="rounded-xl border border-gray-200 p-2 dark:border-neutral-600 dark:bg-neutral-900">
       <View className="flex-row items-center justify-between">
         <Pressable
           onPress={() => router.push(`/user/${item.id}`)}

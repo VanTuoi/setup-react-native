@@ -96,7 +96,7 @@ export default function EditUser() {
     mutate(values, {
       onSuccess: () => {
         showMessage({
-          message: translate('new_user.message.create_success'),
+          message: translate('edit_user.message.edit_success'),
           type: 'success',
           backgroundColor: '#22c55e',
           color: '#fff',
@@ -106,7 +106,7 @@ export default function EditUser() {
       },
       onError: () => {
         showMessage({
-          message: translate('new_user.message.create_fail'),
+          message: translate('edit_user.message.edit_fail'),
           type: 'danger',
           backgroundColor: '#ef4444',
           color: '#fff',
@@ -127,7 +127,7 @@ export default function EditUser() {
   if (isError || !data?.data) {
     return (
       <View className="flex-1 items-center justify-center">
-        <Text>Error loading user</Text>
+        <Text>{translate('common.error_load')}</Text>
       </View>
     );
   }

@@ -19,5 +19,6 @@ export type FilterOption = {
   sortDirection?: 'asc' | 'desc';
   sortBy?: 'id' | 'name' | 'createdAt';
   categoryId?: string;
+  searchFields?: string[];
   [key: string]: any;
 };

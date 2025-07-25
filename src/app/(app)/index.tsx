@@ -34,13 +34,13 @@ export default function Home() {
   if (isError) {
     return (
       <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">{translate('user.error_load')}</Text>
+        <Text className="text-red-500">{translate('common.error_load')}</Text>
       </View>
     );
   }
 
   return (
-    <View className="flex-1 bg-white px-2 dark:bg-black">
+    <View className="flex-1 bg-white px-2 dark:bg-neutral-900">
       <FocusAwareStatusBar />
       <SearchComponent />
       <FlashList
