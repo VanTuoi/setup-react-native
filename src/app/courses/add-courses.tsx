@@ -7,9 +7,9 @@ import { ScrollView } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import { z } from 'zod';
 
-import { useCreateUser } from '@/api';
+import { useCreateCourse } from '@/api';
+import { CourseFormFields } from '@/components/courses/courses-form-fields';
 import { Button, FocusAwareStatusBar, View } from '@/components/ui';
-import { UserFormFields } from '@/components/user/user-form-fields';
 import { translate } from '@/lib';
 
 const formSchema = z.object({
@@ -17,47 +17,37 @@ const formSchema = z.object({
     .string()
     .min(
       1,
-      `${translate('new_user.form.id')} ${translate('new_user.validate.required')}`
+      `${translate('course.form.id')} ${translate('course.validate.required')}`
     ),
-
   name: z
     .string()
     .min(
       1,
-      `${translate('new_user.form.name')} ${translate('new_user.validate.required')}`
+      `${translate('course.form.name')} ${translate('course.validate.required')}`
     ),
-
-  email: z
+  image: z
     .string()
-    .email(translate('new_user.validate.email_invalid'))
+    .url(translate('course.validate.image_url'))
     .min(
       1,
-      `${translate('new_user.form.email')} ${translate('new_user.validate.required')}`
+      `${translate('course.form.image')} ${translate('course.validate.required')}`
     ),
-
-  phone: z
+  price: z.number().min(1, translate('course.validate.price_min')),
+  description: z
     .string()
-    .min(6, translate('new_user.validate.phone_min'))
+    .min(10, translate('course.validate.description_min'))
     .min(
       1,
-      `${translate('new_user.form.phone')} ${translate('new_user.validate.required')}`
+      `${translate('course.form.description')} ${translate('course.validate.required')}`
     ),
-
-  gender: z
-    .string()
-    .min(
-      1,
-      `${translate('new_user.form.gender')} ${translate('new_user.validate.required')}`
-    ),
-
-  status: z.enum(['active', 'block', 'graduated']),
+  status: z.enum(['show', 'hidden']),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
-export default function AddUser() {
+export default function AddCourse() {
   const router = useRouter();
-  const { mutate, isPending: loadingCreate } = useCreateUser();
+  const { mutate, isPending: loadingCreate } = useCreateCourse();
 
   const {
     control,
@@ -66,12 +56,12 @@ export default function AddUser() {
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      id: 'B1234567',
+      id: '',
       name: '',
-      email: '',
-      phone: '',
-      gender: 'other',
-      status: 'active',
+      image: '',
+      price: 0,
+      description: '',
+      status: 'show',
     },
   });
 
@@ -79,7 +69,7 @@ export default function AddUser() {
     mutate(values, {
       onSuccess: () => {
         showMessage({
-          message: translate('new_user.message.create_success'),
+          message: translate('course.message.create_success'),
           type: 'success',
           backgroundColor: '#22c55e',
           color: '#fff',
@@ -89,7 +79,7 @@ export default function AddUser() {
       },
       onError: () => {
         showMessage({
-          message: translate('new_user.message.create_fail'),
+          message: translate('course.message.create_fail'),
           type: 'danger',
           backgroundColor: '#ef4444',
           color: '#fff',
@@ -107,13 +97,13 @@ export default function AddUser() {
       >
         <Stack.Screen
           options={{
-            title: translate('new_user.title'),
-            headerBackTitle: translate('new_user.back'),
+            title: translate('course.title.create'),
+            headerBackTitle: translate('course.back'),
           }}
         />
         <FocusAwareStatusBar />
 
-        <UserFormFields control={control} />
+        <CourseFormFields control={control} />
       </ScrollView>
 
       <View className="absolute inset-x-0 bottom-0 p-4">
@@ -122,7 +112,7 @@ export default function AddUser() {
           textClassName="text-white font-bold"
           loading={loadingCreate}
           disabled={loadingCreate || !isValid}
-          label={translate('new_user.form.create')}
+          label={translate('course.form.create')}
           onPress={handleSubmit(onSubmit)}
         />
       </View>

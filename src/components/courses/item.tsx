@@ -7,12 +7,18 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import type { User } from '@/api/user';
+import { type Course } from '@/api/courses';
 
 import { CaretDown } from '../ui/icons';
-import { UserStatusItem } from './user-status-item';
+import { CourseStatusItem } from './course-status-item';
 
-export const UserItem = ({ item }: { item: User }) => {
+type CourseItemProps = {
+  item: Course;
+  isGrid?: boolean;
+};
+
+// eslint-disable-next-line max-lines-per-function
+export const CoursesItem = ({ item, isGrid = false }: CourseItemProps) => {
   const [showDetail, setShowDetail] = useState(false);
   const rotate = useSharedValue(0);
   const detailOpacity = useSharedValue(0);
@@ -43,10 +49,14 @@ export const UserItem = ({ item }: { item: User }) => {
   };
 
   return (
-    <View className="rounded-xl border border-gray-200 p-2 dark:border-neutral-600 dark:bg-neutral-900">
+    <View
+      className={`${
+        isGrid ? 'w-[95%]' : 'w-full'
+      } mb-1 rounded-xl border border-gray-200 p-2 dark:border-neutral-600 dark:bg-neutral-900`}
+    >
       <View className="flex-row items-center justify-between">
         <Pressable
-          onPress={() => router.push(`/user/${item.id}`)}
+          onPress={() => router.push(`/courses/${item.id}`)}
           className="flex-1"
         >
           <View className="space-y-1">
@@ -54,25 +64,27 @@ export const UserItem = ({ item }: { item: User }) => {
               {`${item.name} (${item.id})`}
             </Text>
             <Text className="text-sm text-black dark:text-gray-400">
-              {item.email}
+              {item.price}
             </Text>
           </View>
         </Pressable>
 
-        <View className="flex-row items-center gap-2">
-          <UserStatusItem User={item} />
-          <Pressable onPress={toggle} hitSlop={10}>
-            <Animated.View style={iconAnimatedStyle}>
-              <CaretDown width={14} height={14} color="#999" />
-            </Animated.View>
-          </Pressable>
-        </View>
+        {!isGrid && (
+          <View className="flex-row items-center gap-2">
+            <CourseStatusItem Course={item} />
+            <Pressable onPress={toggle} hitSlop={10}>
+              <Animated.View style={iconAnimatedStyle}>
+                <CaretDown width={14} height={14} color="#999" />
+              </Animated.View>
+            </Pressable>
+          </View>
+        )}
       </View>
 
-      {showDetail && (
+      {!isGrid && showDetail && (
         <Animated.View style={[detailAnimatedStyle]} className="mt-2 space-y-1">
           <Text className="text-sm text-black dark:text-gray-400">
-            {item.phone}
+            {item.description}
           </Text>
         </Animated.View>
       )}

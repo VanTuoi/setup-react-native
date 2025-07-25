@@ -3,11 +3,12 @@ import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as React from 'react';
 import { Alert, useColorScheme } from 'react-native';
 
-import { useDeleteUser, useUser } from '@/api/user';
+import { useCourse, useDeleteCourse } from '@/api/courses';
 import {
   ActivityIndicator,
   Button,
   FocusAwareStatusBar,
+  Image,
   ScrollView,
   Text,
   View,
@@ -15,29 +16,28 @@ import {
 import { EditIcon } from '@/components/ui/icons/edit';
 import { translate } from '@/lib';
 
-export default function User() {
+export default function CourseDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const theme = useColorScheme();
 
-  const userQuery = useUser({
-    // @ts-ignore
-    variables: { id },
+  const courseQuery = useCourse({
+    variables: { id: id as string },
   });
 
-  const deleteMutation = useDeleteUser();
+  const deleteMutation = useDeleteCourse();
 
-  const data = userQuery.data?.data;
+  const data = courseQuery.data?.data;
 
   const renderHeader = (title: string) => (
     <Stack.Screen
       options={{
         title,
-        headerBackTitle: 'Users',
+        headerBackTitle: translate('course.back'),
         headerRight: () => (
           <Button
             onPress={() => {
-              router.push(`/user/${id}/edit`);
+              router.push(`/courses/${id}/edit`);
             }}
             variant="ghost"
             className="mr-3"
@@ -49,20 +49,20 @@ export default function User() {
     />
   );
 
-  if (userQuery.isPending) {
+  if (courseQuery.isPending) {
     return (
       <View className="flex-1 items-center justify-center p-3">
-        {renderHeader('User')}
+        {renderHeader(translate('course.title.list'))}
         <FocusAwareStatusBar />
         <ActivityIndicator size="large" />
       </View>
     );
   }
 
-  if (userQuery.isError || !data) {
+  if (courseQuery.isError || !data) {
     return (
       <View className="flex-1 items-center justify-center p-3">
-        {renderHeader('User')}
+        {renderHeader(translate('course.title.list'))}
         <FocusAwareStatusBar />
         <Text className="text-center text-red-500">
           {translate('common.error_load')}
@@ -77,74 +77,73 @@ export default function User() {
         className="flex-1 p-2"
         contentContainerStyle={{ paddingBottom: 80 }}
       >
-        {renderHeader(translate('detail_user.title'))}
+        {renderHeader(translate('detail_course.title'))}
         <FocusAwareStatusBar />
+
+        {data.image ? (
+          <Image
+            source={{ uri: data.image }}
+            className="mb-4 h-48 w-full rounded-lg"
+            resizeMode="cover"
+          />
+        ) : null}
 
         <View className="flex flex-col items-start gap-2">
           <Text className="text-xl font-bold">{data.name}</Text>
 
           <Text>
             <Text className="font-semibold">
-              {translate('detail_user.id')}:
+              {translate('detail_course.id')}:
             </Text>{' '}
             {data.id}
           </Text>
 
           <Text>
             <Text className="font-semibold">
-              {translate('detail_user.email')}:
+              {translate('detail_course.price')}:
             </Text>{' '}
-            {data.email}
+            {data.price.toLocaleString()} VND
           </Text>
+
           <Text>
             <Text className="font-semibold">
-              {translate('detail_user.phone')}:
-            </Text>{' '}
-            {data.phone}
-          </Text>
-          <Text>
-            <Text className="font-semibold">
-              {translate('detail_user.gender')}:
-            </Text>{' '}
-            {data.gender}
-          </Text>
-          <Text>
-            <Text className="font-semibold">
-              {translate('detail_user.status')}:
+              {translate('detail_course.status')}:
             </Text>{' '}
             <Text
               className={`font-semibold ${
-                data.status === 'block'
-                  ? 'text-red-500'
-                  : data.status === 'graduated'
-                    ? 'text-green-600'
-                    : 'text-blue-600'
+                data.status === 'hidden' ? 'text-red-500' : 'text-green-600'
               }`}
             >
-              {data.status}
+              {translate(`course.status.${data.status}`)}
             </Text>
           </Text>
+
+          <Text className="font-semibold">
+            {translate('detail_course.description')}:
+          </Text>
+          <Text>{data.description}</Text>
         </View>
       </ScrollView>
+
       <View className="absolute inset-x-0 bottom-0 p-4 dark:border-gray-800">
         <Button
           className="dark:bg-gray-200"
           textClassName="text-red-500 font-bold dark:text-red-700"
           variant="outline"
           loading={deleteMutation.isPending}
-          label={translate('detail_user.delete_user.button_label')}
+          label={translate('detail_course.delete_course.button_label')}
           size="default"
           onPress={() => {
             Alert.alert(
-              translate('detail_user.delete_user.alert.title'),
-              translate('detail_user.delete_user.alert.body'),
+              translate('detail_course.delete_course.alert.title'),
+              translate('detail_course.delete_course.alert.body'),
               [
                 {
-                  text: translate('detail_user.delete_user.alert.cancel'),
+                  text: translate('detail_course.delete_course.alert.cancel'),
                   style: 'cancel',
                 },
                 {
-                  text: translate('detail_user.delete_user.alert.delete'),
+                  text: translate('detail_course.delete_course.alert.delete'),
                   style: 'destructive',
                   onPress: () => {
                     deleteMutation.mutate(

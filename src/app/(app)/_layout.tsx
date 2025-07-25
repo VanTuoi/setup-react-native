@@ -34,9 +34,9 @@ export default function TabLayout() {
         name="index"
         options={{
           headerShown: false,
-          title: translate('layout.user_tab'),
+          title: translate('layout.course_tab'),
           tabBarIcon: ({ color }) => <FeedIcon color={color} />,
-          tabBarButtonTestID: 'user-tab',
+          tabBarButtonTestID: 'course-tab',
         }}
       />
       <Tabs.Screen

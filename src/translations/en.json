@@ -1,49 +1,86 @@
 {
   "common": {
-    "error_load": "Error when loading data",
+    "error_load": "Error loading data",
     "no_data": "Sorry! No data found",
     "save": "Save"
   },
-  "detail_user": {
-    "delete_user": {
+  "course": {
+    "action": {
+      "create": "Create",
+      "delete": "Delete",
+      "edit": "Edit",
+      "view": "View Details"
+    },
+    "back": "Courses",
+    "form": {
+      "create": "Create Course",
+      "description": "Description",
+      "id": "ID",
+      "image": "Image",
+      "name": "Course Name",
+      "price": "Price",
+      "status": "Status",
+      "status_placeholder": "Select status"
+    },
+    "message": {
+      "create_fail": "Failed to create course!",
+      "create_success": "Course created successfully!",
+      "delete_fail": "Failed to delete course!",
+      "delete_success": "Course deleted successfully!",
+      "update_fail": "Failed to update course!",
+      "update_success": "Course updated successfully!"
+    },
+    "status": {
+      "hidden": "Hidden",
+      "show": "Show"
+    },
+    "title": {
+      "create": "Add Course",
+      "edit": "Edit Course",
+      "list": "Course List"
+    },
+    "validate": {
+      "description_min": "Description must be at least 10 characters",
+      "image_url": "Invalid image URL",
+      "price_min": "Price must be greater than 0",
+      "required": "is required"
+    }
+  },
+  "courses": {
+    "button_apply_filter": "Apply",
+    "button_reset_filter": "Reset Filter",
+    "filter": "Filter",
+    "order": "Order",
+    "placeholder_search": "Search",
+    "search_by": "Search by",
+    "sort_by": "Sort by"
+  },
+  "detail_course": {
+    "delete_course": {
       "alert": {
-        "body": "Are you sure you want to delete this user?",
+        "body": "Are you sure you want to delete this course?",
         "cancel": "Cancel",
         "delete": "Delete",
-        "title": "Delete User"
+        "title": "Delete Course"
       },
-      "button_label": "Delete User"
+      "button_label": "Delete Course"
     },
-    "email": "Email",
-    "full_name": "Full Name",
-    "gender": "Gender",
+    "description": "Description",
     "id": "ID",
-    "phone": "Phone",
-    "select_status": {
-      "active": "Active",
-      "block": "Blocked",
-      "graduated": "Graduated"
-    },
+    "image": "Image",
+    "price": "Price",
     "status": "Status",
-    "title": "Detail user"
-  },
-  "edit_user": {
-    "back": "Back",
-    "message": {
-      "edit_fail": "User edition failed!",
-      "edit_success": "User edition successful!"
-    },
-    "title": "Edit user information"
+    "title": "Course Details"
   },
   "layout": {
-    "settings_tab": "Settings",
-    "user_tab": "User"
+    "course_tab": "Courses",
+    "settings_tab": "Settings"
   },
   "login": {
     "button": "Login",
-    "demo_email": "Email demo is admin@example.com",
+    "demo_email": "Demo email is admin@example.com",
     "demo_message": "Welcome! 👋 This is a demo login screen!",
-    "demo_password": "Password demo is 123456",
+    "demo_password": "Demo password is 123456",
     "errors": {
       "email_invalid": "Invalid email format",
       "email_required": "Email is required",
@@ -54,34 +91,7 @@
       "email": "Email",
       "password": "Password"
     },
-    "title": "Sign In"
-  },
-  "new_user": {
-    "back": "Users",
-    "form": {
-      "create": "Create User",
-      "email": "Email",
-      "gender": "Gender",
-      "gender_placeholder": "Select gender",
-      "id": "Id",
-      "name": "Full Name",
-      "phone": "Phone Number"
-    },
-    "gender": {
-      "female": "Female",
-      "male": "Male",
-      "other": "Other"
-    },
-    "message": {
-      "create_fail": "Failed to create user!",
-      "create_success": "User created successfully!"
-    },
-    "title": "Add User",
-    "validate": {
-      "email_invalid": "Invalid email",
-      "phone_min": "Phone number must be at least 6 characters",
-      "required": "is required"
-    }
+    "title": "Login"
   },
   "settings": {
     "about": "About",
@@ -100,14 +110,5 @@
     "title": "Settings",
     "version": "Version",
     "vietnamese": "Vietnamese"
-  },
-  "users": {
-    "button_apply_filter": "Apply",
-    "button_reset_filter": "Reset Filter",
-    "filter": "Filter",
-    "order": "Order",
-    "placeholder_search": "Search",
-    "search_by": "Search by",
-    "sort_by": "Sort by"
   }
 }

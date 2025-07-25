@@ -22,14 +22,12 @@ type FilterModalProps = {
 
 const SEARCH_FIELDS: Option[] = [
   { label: 'Name', value: 'name' },
-  { label: 'Email', value: 'email' },
-  { label: 'Phone number', value: 'phone' },
+  { label: 'ID', value: 'id' },
 ];
 
 const FILTER_FIELDS: Option[] = [
-  { label: 'ID', value: 'id' },
   { label: 'Name', value: 'name' },
-  { label: 'Phone number', value: 'phone' },
+  { label: 'Price', value: 'price' },
 ];
 
 const SORT_ORDERS: Option[] = [
@@ -69,12 +67,12 @@ export const FilterModal = ({
   return (
     <Modal
       ref={modalRef}
-      snapPoints={['60%']}
+      snapPoints={['55%']}
       backgroundStyle={{ backgroundColor }}
     >
       <BottomSheetKeyboardAwareScrollView className="px-4 dark:bg-neutral-800">
         <Text className="mb-2 text-base font-semibold dark:text-white">
-          {translate('users.sort_by')}
+          {translate('courses.sort_by')}
         </Text>
         <View className="mb-4 gap-2">
           {FILTER_FIELDS.map((item) => (
@@ -88,7 +86,7 @@ export const FilterModal = ({
           ))}
         </View>
         <Text className="mb-2 text-base font-semibold dark:text-white">
-          {translate('users.order')}
+          {translate('courses.order')}
         </Text>
         <View className="mb-4 gap-2">
           {SORT_ORDERS.map((item) => (
@@ -102,7 +100,7 @@ export const FilterModal = ({
           ))}
         </View>
         <Text className="mb-2 text-base font-semibold dark:text-white">
-          {translate('users.search_by')}
+          {translate('courses.search_by')}
         </Text>
         <View className="mb-4 gap-2">
           {SEARCH_FIELDS.map((item) => (
@@ -118,12 +116,12 @@ export const FilterModal = ({
         <View className="mt-4">
           <Button
             textClassName="dark:text-white"
-            label={translate('users.button_apply_filter')}
+            label={translate('courses.button_apply_filter')}
             className="bg-primary-500 dark:bg-primary-600"
             onPress={() => onApply(selectedField, selectedOrder, searchFields)}
           />
           <Button
-            label={translate('users.button_reset_filter')}
+            label={translate('courses.button_reset_filter')}
             variant="outline"
             onPress={onReset}
           />

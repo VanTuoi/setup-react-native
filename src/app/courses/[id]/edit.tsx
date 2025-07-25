@@ -7,8 +7,9 @@ import { ScrollView } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import { z } from 'zod';
 
-import { useUser } from '@/api/user';
-import { useUpdateUser } from '@/api/user/use-update-user';
+import { useUpdateCourse } from '@/api';
+import { useCourse } from '@/api/courses';
+import { CourseFormFields } from '@/components/courses';
 import {
   ActivityIndicator,
   Button,
@@ -16,7 +17,6 @@ import {
   Text,
   View,
 } from '@/components/ui';
-import { UserFormFields } from '@/components/user/user-form-fields';
 import { translate } from '@/lib';
 
 const formSchema = z.object({
@@ -25,43 +25,38 @@ const formSchema = z.object({
     .string()
     .min(
       1,
-      `${translate('new_user.form.name')} ${translate('new_user.validate.required')}`
+      `${translate('course.form.name')} ${translate('course.validate.required')}`
     ),
-  email: z
+  image: z
     .string()
-    .email(translate('new_user.validate.email_invalid'))
+    .url(translate('course.validate.image_url'))
     .min(
       1,
-      `${translate('new_user.form.email')} ${translate('new_user.validate.required')}`
+      `${translate('course.form.image')} ${translate('course.validate.required')}`
     ),
-  phone: z
+  price: z.number().min(1, translate('course.validate.price_min')),
+  description: z
     .string()
-    .min(6, translate('new_user.validate.phone_min'))
+    .min(10, translate('course.validate.description_min'))
     .min(
       1,
-      `${translate('new_user.form.phone')} ${translate('new_user.validate.required')}`
+      `${translate('course.form.description')} ${translate('course.validate.required')}`
     ),
-  gender: z
-    .string()
-    .min(
-      1,
-      `${translate('new_user.form.gender')} ${translate('new_user.validate.required')}`
-    ),
-  status: z.enum(['active', 'block', 'graduated']),
+  status: z.enum(['show', 'hidden']),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
-export default function EditUser() {
+export default function EditCourse() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { mutate, isPending: loadingUpdate } = useUpdateUser();
+  const { mutate, isPending: loadingUpdate } = useUpdateCourse();
 
   const {
     data,
     isPending: isLoadingGet,
     isError,
-  } = useUser({ variables: { id } });
+  } = useCourse({ variables: { id: id as string } });
 
   const {
     control,
@@ -73,30 +68,30 @@ export default function EditUser() {
     defaultValues: {
       id: '',
       name: '',
-      email: '',
-      phone: '',
-      gender: '',
-      status: 'active',
+      image: '',
+      price: 0,
+      description: '',
+      status: 'show',
     },
   });
 
   useEffect(() => {
     if (data?.data) {
-      const user = data.data;
-      setValue('id', user.id);
-      setValue('name', user.name);
-      setValue('email', user.email);
-      setValue('phone', user.phone);
-      setValue('gender', user.gender);
-      setValue('status', user.status);
+      const course = data.data;
+      setValue('id', course.id);
+      setValue('name', course.name);
+      setValue('image', course.image);
+      setValue('price', course.price);
+      setValue('description', course.description);
+      setValue('status', course.status);
     }
-  }, [data]);
+  }, [data, setValue]);
 
   const onSubmit = (values: FormData) => {
     mutate(values, {
       onSuccess: () => {
         showMessage({
-          message: translate('edit_user.message.edit_success'),
+          message: translate('course.message.update_success'),
           type: 'success',
           backgroundColor: '#22c55e',
           color: '#fff',
@@ -106,7 +101,7 @@ export default function EditUser() {
       },
       onError: () => {
         showMessage({
-          message: translate('edit_user.message.edit_fail'),
+          message: translate('course.message.update_fail'),
           type: 'danger',
           backgroundColor: '#ef4444',
           color: '#fff',
@@ -140,18 +135,18 @@ export default function EditUser() {
       >
         <Stack.Screen
           options={{
-            title: translate('edit_user.title'),
-            headerBackTitle: translate('edit_user.back'),
+            title: translate('course.title.edit'),
+            headerBackTitle: translate('course.back'),
           }}
         />
         <FocusAwareStatusBar />
 
         <View className="mt-6 space-y-3">
-          <UserFormFields control={control} isEdit={true} />
+          <CourseFormFields control={control} isEdit={true} />
         </View>
       </ScrollView>
 
-      <View className="absolute inset-x-0 bottom-0  p-4">
+      <View className="absolute inset-x-0 bottom-0 p-4">
         <Button
           className="bg-green-500 dark:bg-green-700"
           textClassName="text-white font-bold dark:text-white"

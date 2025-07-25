@@ -3,14 +3,14 @@ import { createMutation } from 'react-query-kit';
 
 import { queryClient } from '../common';
 import type { ResponseData } from '../types';
-import { deleteUserMock } from './user-mock';
+import { deleteCourseMock } from './courses-mock';
 
 type Variables = { id: string };
 type Response = ResponseData<null>;
 
-export const useDeleteUser = createMutation<Response, Variables, AxiosError>({
+export const useDeleteCourse = createMutation<Response, Variables, AxiosError>({
   mutationFn: async ({ id }) => {
-    return await deleteUserMock(id);
+    return await deleteCourseMock(id);
   },
   onSuccess: () => {
     queryClient.invalidateQueries({ queryKey: ['users'] });

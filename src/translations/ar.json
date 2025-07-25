@@ -1,43 +1,80 @@
 {
   "common": {
-    "error_load": "خطأ عند تحميل البيانات",
-    "no_data": "عذرًا! لا يوجد بيانات",
+    "error_load": "خطأ في تحميل البيانات",
+    "no_data": "عذرًا! لا توجد بيانات",
     "save": "حفظ"
   },
-  "detail_user": {
-    "delete_user": {
+  "course": {
+    "action": {
+      "create": "إنشاء",
+      "delete": "حذف",
+      "edit": "تعديل",
+      "view": "عرض التفاصيل"
+    },
+    "back": "الدورات",
+    "form": {
+      "create": "إنشاء دورة",
+      "description": "الوصف",
+      "id": "المعرف",
+      "image": "الصورة",
+      "name": "اسم الدورة",
+      "price": "السعر",
+      "status": "الحالة",
+      "status_placeholder": "اختر الحالة"
+    },
+    "message": {
+      "create_fail": "فشل إنشاء الدورة!",
+      "create_success": "تم إنشاء الدورة بنجاح!",
+      "delete_fail": "فشل حذف الدورة!",
+      "delete_success": "تم حذف الدورة بنجاح!",
+      "update_fail": "فشل تحديث الدورة!",
+      "update_success": "تم تحديث الدورة بنجاح!"
+    },
+    "status": {
+      "hidden": "مخفي",
+      "show": "ظاهر"
+    },
+    "title": {
+      "create": "إضافة دورة",
+      "edit": "تعديل الدورة",
+      "list": "قائمة الدورات"
+    },
+    "validate": {
+      "description_min": "يجب أن يكون الوصف 10 أحرف على الأقل",
+      "image_url": "رابط الصورة غير صالح",
+      "price_min": "يجب أن يكون السعر أكبر من 0",
+      "required": "مطلوب"
+    }
+  },
+  "courses": {
+    "button_apply_filter": "تطبيق",
+    "button_reset_filter": "إعادة تعيين الفلتر",
+    "filter": "تصفية",
+    "order": "الترتيب",
+    "placeholder_search": "بحث",
+    "search_by": "البحث حسب",
+    "sort_by": "ترتيب حسب"
+  },
+  "detail_course": {
+    "delete_course": {
       "alert": {
-        "body": "هل أنت متأكد أنك تريد حذف هذا المستخدم؟",
+        "body": "هل أنت متأكد أنك تريد حذف هذه الدورة؟",
         "cancel": "إلغاء",
         "delete": "حذف",
-        "title": "حذف المستخدم"
+        "title": "حذف الدورة"
       },
-      "button_label": "حذف المستخدم"
+      "button_label": "حذف الدورة"
     },
-    "email": "البريد الإلكتروني",
-    "full_name": "الاسم الكامل",
-    "gender": "الجنس",
+    "description": "الوصف",
     "id": "المعرف",
-    "phone": "الهاتف",
-    "select_status": {
-      "active": "نشط",
-      "block": "محظور",
-      "graduated": "تخرج"
-    },
+    "image": "الصورة",
+    "price": "السعر",
     "status": "الحالة",
-    "title": "تفاصيل المستخدم"
-  },
-  "edit_user": {
-    "back": "رجوع",
-    "message": {
-      "edit_fail": "فشل تعديل المستخدم!",
-      "edit_success": "تم تعديل المستخدم بنجاح!"
-    },
-    "title": "تعديل معلومات المستخدم"
+    "title": "تفاصيل الدورة"
   },
   "layout": {
-    "settings_tab": "الإعدادات",
-    "user_tab": "المستخدم"
+    "course_tab": "الدورات",
+    "settings_tab": "الإعدادات"
   },
   "login": {
     "button": "تسجيل الدخول",
@@ -47,7 +84,7 @@
     "errors": {
       "email_invalid": "صيغة البريد الإلكتروني غير صالحة",
       "email_required": "البريد الإلكتروني مطلوب",
-      "password_min": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
+      "password_min": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
       "password_required": "كلمة المرور مطلوبة"
     },
     "form": {
@@ -55,33 +92,6 @@
       "password": "كلمة المرور"
     },
     "title": "تسجيل الدخول"
-  },
-  "new_user": {
-    "back": "المستخدمون",
-    "form": {
-      "create": "إنشاء مستخدم",
-      "email": "البريد الإلكتروني",
-      "gender": "الجنس",
-      "gender_placeholder": "اختر الجنس",
-      "id": "المعرف",
-      "name": "الاسم الكامل",
-      "phone": "رقم الهاتف"
-    },
-    "gender": {
-      "female": "أنثى",
-      "male": "ذكر",
-      "other": "أخرى"
-    },
-    "message": {
-      "create_fail": "فشل إنشاء المستخدم!",
-      "create_success": "تم إنشاء المستخدم بنجاح!"
-    },
-    "title": "إضافة مستخدم",
-    "validate": {
-      "email_invalid": "بريد إلكتروني غير صالح",
-      "phone_min": "يجب أن يتكون رقم الهاتف من 6 أحرف على الأقل",
-      "required": "مطلوب"
-    }
   },
   "settings": {
     "about": "حول",
@@ -92,22 +102,13 @@
     "language": "اللغة",
     "logout": "تسجيل الخروج",
     "theme": {
-      "dark": "داكن",
+      "dark": "مظلم",
       "light": "فاتح",
       "system": "النظام",
-      "title": "المظهر"
+      "title": "السمة"
     },
     "title": "الإعدادات",
     "version": "الإصدار",
     "vietnamese": "الفيتنامية"
-  },
-  "users": {
-    "button_apply_filter": "تطبيق",
-    "button_reset_filter": "إعادة تعيين التصفية",
-    "filter": "تصفية",
-    "order": "الترتيب",
-    "placeholder_search": "بحث",
-    "search_by": "البحث بواسطة",
-    "sort_by": "الترتيب حسب"
   }
 }

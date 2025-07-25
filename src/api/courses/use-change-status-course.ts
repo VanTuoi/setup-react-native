@@ -3,24 +3,24 @@ import { createMutation } from 'react-query-kit';
 
 import { queryClient } from '../common';
 import type { ResponseData } from '../types';
-import type { User } from './types';
-import { changeStatusUserMock } from './user-mock';
+import { changeStatusCourseMock } from './courses-mock';
+import type { Course } from './types';
 
 type Variables = {
   id: string;
-  status: 'active' | 'block' | 'graduated';
+  status: 'show' | 'hidden';
 };
-type Response = ResponseData<User>;
+type Response = ResponseData<Course>;
 
-export const useChangeStatusUser = createMutation<
+export const useChangeStatusCourse = createMutation<
   Response,
   Variables,
   AxiosError
 >({
   mutationFn: async ({ id, status }) => {
-    return await changeStatusUserMock(id, status);
+    return await changeStatusCourseMock(id, status);
   },
   onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ['users'] });
+    queryClient.invalidateQueries({ queryKey: ['Course'] });
   },
 });

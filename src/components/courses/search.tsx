@@ -12,7 +12,7 @@ import { FilterModal } from './filter-modal';
 
 const defaultFilter: FilterOption = {
   search: '',
-  sortBy: 'id',
+  sortBy: 'name',
   sortDirection: 'asc',
   categoryId: '',
 };
@@ -59,10 +59,10 @@ export const SearchComponent = () => {
 
   return (
     <>
-      <View className="mb-3 mt-2 flex-row items-center gap-5">
+      <View className="mt-2 flex-row items-center gap-5">
         <View className="flex-1">
           <SearchInput
-            placeholder={translate('users.placeholder_search')}
+            placeholder={translate('courses.placeholder_search')}
             value={queryParams.search ?? ''}
             onChangeText={handleSearchChange}
           />
@@ -76,7 +76,7 @@ export const SearchComponent = () => {
           <View className="flex-row items-center gap-1">
             <Filter width={32} height={32} />
             <Text className="text-gray-700 dark:text-gray-400">
-              {translate('users.filter')}
+              {translate('courses.filter')}
             </Text>
           </View>
           {filterCount > 0 && (
