@@ -1,5 +1,7 @@
 {
   "common": {
+    "error_load": "خطأ عند تحميل البيانات",
+    "no_data": "عذرًا! لا يوجد بيانات",
     "save": "حفظ"
   },
   "detail_user": {
@@ -13,20 +15,27 @@
       "button_label": "حذف المستخدم"
     },
     "email": "البريد الإلكتروني",
-    "error_load": "خطأ أثناء تحميل البيانات",
     "full_name": "الاسم الكامل",
     "gender": "الجنس",
     "id": "المعرف",
-    "phone": "رقم الهاتف",
+    "phone": "الهاتف",
+    "select_status": {
+      "active": "نشط",
+      "block": "محظور",
+      "graduated": "تخرج"
+    },
     "status": "الحالة",
     "title": "تفاصيل المستخدم"
   },
   "edit_user": {
     "back": "رجوع",
-    "title": "تعديل المستخدم"
+    "message": {
+      "edit_fail": "فشل تعديل المستخدم!",
+      "edit_success": "تم تعديل المستخدم بنجاح!"
+    },
+    "title": "تعديل معلومات المستخدم"
   },
   "layout": {
-    "create": "إنشاء",
     "settings_tab": "الإعدادات",
     "user_tab": "المستخدم"
   },
@@ -36,7 +45,7 @@
     "demo_message": "مرحبًا! 👋 هذه شاشة تسجيل دخول تجريبية!",
     "demo_password": "كلمة المرور التجريبية هي 123456",
     "errors": {
-      "email_invalid": "تنسيق البريد الإلكتروني غير صالح",
+      "email_invalid": "صيغة البريد الإلكتروني غير صالحة",
       "email_required": "البريد الإلكتروني مطلوب",
       "password_min": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
       "password_required": "كلمة المرور مطلوبة"
@@ -61,21 +70,18 @@
     "gender": {
       "female": "أنثى",
       "male": "ذكر",
-      "other": "آخر"
+      "other": "أخرى"
     },
     "message": {
-      "create_fail": "فشل في إنشاء المستخدم!",
+      "create_fail": "فشل إنشاء المستخدم!",
       "create_success": "تم إنشاء المستخدم بنجاح!"
     },
     "title": "إضافة مستخدم",
     "validate": {
-      "email_invalid": "البريد الإلكتروني غير صالح",
-      "phone_min": "يجب أن يكون رقم الهاتف 6 أرقام على الأقل",
+      "email_invalid": "بريد إلكتروني غير صالح",
+      "phone_min": "يجب أن يتكون رقم الهاتف من 6 أحرف على الأقل",
       "required": "مطلوب"
     }
-  },
-  "onboarding": {
-    "message": "مرحبًا بك في موقع تطبيق obytes"
   },
   "settings": {
     "about": "حول",
@@ -89,23 +95,19 @@
       "dark": "داكن",
       "light": "فاتح",
       "system": "النظام",
-      "title": "الثيم"
+      "title": "المظهر"
     },
     "title": "الإعدادات",
     "version": "الإصدار",
     "vietnamese": "الفيتنامية"
   },
-  "user": {
-    "back_title": "المستخدم",
-    "error_load": "خطأ أثناء تحميل البيانات",
-    "header": {
-      "email": "البريد الإلكتروني",
-      "full_name": "الاسم الكامل",
-      "id": "المعرف",
-      "status": "الحالة"
-    },
-    "new": "مستخدم جديد",
-    "title": "إدارة المستخدمين"
-  },
-  "welcome": "مرحبًا بك في موقع تطبيق obytes"
+  "users": {
+    "button_apply_filter": "تطبيق",
+    "button_reset_filter": "إعادة تعيين التصفية",
+    "filter": "تصفية",
+    "order": "الترتيب",
+    "placeholder_search": "بحث",
+    "search_by": "البحث بواسطة",
+    "sort_by": "الترتيب حسب"
+  }
 }

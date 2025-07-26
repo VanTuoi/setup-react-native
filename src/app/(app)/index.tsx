@@ -1,8 +1,8 @@
 import { FlashList } from '@shopify/flash-list';
-import { Stack, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import React from 'react';
 
-import { useUsers } from '@/api/user';
+import { type FilterOption, useUsers } from '@/api/user';
 import {
   Button,
   EmptyList,
@@ -10,49 +10,39 @@ import {
   Text,
   View,
 } from '@/components/ui';
-import { HeaderTable } from '@/components/user/header-table';
+import { PlusIcon } from '@/components/ui/icons/plus';
 import { UserItem } from '@/components/user/item';
 import { SearchComponent } from '@/components/user/search';
 import { useQueryParams } from '@/lib';
 import { translate } from '@/lib/i18n';
 
-export default function Home() {
-  const { queryParams } = useQueryParams({ search: '' });
-  const { data, isPending, isError, refetch } = useUsers({
-    variables: {
-      search: queryParams.search,
-    },
-  });
+const defaultFilter: FilterOption = {
+  search: '',
+  sortBy: 'id',
+  sortDirection: 'asc',
+  categoryId: '',
+};
 
+export default function Home() {
   const router = useRouter();
+  const { queryParams } = useQueryParams<FilterOption>(defaultFilter);
+
+  const { data, isPending, isError, refetch } = useUsers({
+    variables: queryParams,
+  });
 
   if (isError) {
     return (
       <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">{translate('user.error_load')}</Text>
+        <Text className="text-red-500">{translate('common.error_load')}</Text>
       </View>
     );
   }
 
   return (
-    <View className="flex-1 bg-white dark:bg-black">
-      <Stack.Screen
-        options={{
-          title: translate('user.title'),
-          headerBackTitle: translate('user.back_title'),
-          headerRight: () => (
-            <Button
-              onPress={() => router.push('/user/add-user')}
-              label={translate('user.new')}
-              size="default"
-              className="mr-5 bg-primary-500"
-            />
-          ),
-        }}
-      />
+    <View className="flex-1 bg-white px-2 dark:bg-neutral-900">
       <FocusAwareStatusBar />
       <SearchComponent />
-      <HeaderTable />
       <FlashList
         data={data?.data}
         renderItem={({ item }) => <UserItem item={item} />}
@@ -61,7 +51,15 @@ export default function Home() {
         estimatedItemSize={60}
         refreshing={isPending}
         onRefresh={() => refetch()}
+        ItemSeparatorComponent={() => <View className="h-1" />}
       />
+      <Button
+        onPress={() => router.push('/user/add-user')}
+        size="icon"
+        className="absolute bottom-8 right-4 size-16 rounded-full bg-primary-500 shadow-xl dark:bg-primary-400"
+      >
+        <PlusIcon width={36} height={36} color="white" />
+      </Button>
     </View>
   );
 }

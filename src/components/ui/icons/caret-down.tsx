@@ -5,8 +5,9 @@ import Svg, { Path } from 'react-native-svg';
 export const CaretDown = ({ ...props }: SvgProps) => (
   <Svg
     width={12}
-    height={13}
+    height={12}
     fill="none"
+    viewBox="0 0 12 12"
     {...props}
     className="stroke-black dark:stroke-white"
   >

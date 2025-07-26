@@ -13,3 +13,12 @@ export type UsersResponse = {
   skip: number;
   limit: number;
 };
+
+export type FilterOption = {
+  search?: string;
+  sortDirection?: 'asc' | 'desc';
+  sortBy?: 'id' | 'name' | 'createdAt';
+  categoryId?: string;
+  searchFields?: string[];
+  [key: string]: any;
+};

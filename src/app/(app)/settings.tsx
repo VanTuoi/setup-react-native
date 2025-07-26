@@ -16,7 +16,7 @@ export default function Settings() {
       <FocusAwareStatusBar />
 
       <ScrollView>
-        <View className="flex-1 px-4 pt-16 ">
+        <View className="flex-1 px-4 pt-2">
           <Text className="text-xl font-bold">
             {translate('settings.title')}
           </Text>

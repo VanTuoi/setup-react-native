@@ -96,7 +96,7 @@ export default function EditUser() {
     mutate(values, {
       onSuccess: () => {
         showMessage({
-          message: translate('new_user.message.create_success'),
+          message: translate('edit_user.message.edit_success'),
           type: 'success',
           backgroundColor: '#22c55e',
           color: '#fff',
@@ -106,7 +106,7 @@ export default function EditUser() {
       },
       onError: () => {
         showMessage({
-          message: translate('new_user.message.create_fail'),
+          message: translate('edit_user.message.edit_fail'),
           type: 'danger',
           backgroundColor: '#ef4444',
           color: '#fff',
@@ -127,32 +127,40 @@ export default function EditUser() {
   if (isError || !data?.data) {
     return (
       <View className="flex-1 items-center justify-center">
-        <Text>Error loading user</Text>
+        <Text>{translate('common.error_load')}</Text>
       </View>
     );
   }
 
   return (
-    <ScrollView className="flex-1 p-4">
-      <Stack.Screen
-        options={{
-          title: translate('edit_user.title'),
-          headerBackTitle: translate('edit_user.back'),
-        }}
-      />
-      <FocusAwareStatusBar />
+    <View className="flex-1">
+      <ScrollView
+        className="flex-1 p-4"
+        contentContainerStyle={{ paddingBottom: 80 }}
+      >
+        <Stack.Screen
+          options={{
+            title: translate('edit_user.title'),
+            headerBackTitle: translate('edit_user.back'),
+          }}
+        />
+        <FocusAwareStatusBar />
 
-      <View className="mt-6 space-y-3">
-        <UserFormFields control={control} showId={false} />
+        <View className="mt-6 space-y-3">
+          <UserFormFields control={control} isEdit={true} />
+        </View>
+      </ScrollView>
+
+      <View className="absolute inset-x-0 bottom-0  p-4">
+        <Button
+          className="bg-green-500 dark:bg-green-700"
+          textClassName="text-white font-bold dark:text-white"
+          loading={loadingUpdate}
+          disabled={isSubmitted && (loadingUpdate || !isValid)}
+          label={translate('common.save')}
+          onPress={handleSubmit(onSubmit)}
+        />
       </View>
-
-      <Button
-        loading={loadingUpdate}
-        disabled={isSubmitted && (loadingUpdate || !isValid)}
-        className="mt-6"
-        label={translate('common.save')}
-        onPress={handleSubmit(onSubmit)}
-      />
-    </ScrollView>
+    </View>
   );
 }

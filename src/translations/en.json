@@ -1,5 +1,7 @@
 {
   "common": {
+    "error_load": "Error when loading data",
+    "no_data": "Sorry! No data found",
     "save": "Save"
   },
   "detail_user": {
@@ -13,20 +15,27 @@
       "button_label": "Delete User"
     },
     "email": "Email",
-    "error_load": "Error when loading data",
     "full_name": "Full Name",
     "gender": "Gender",
     "id": "ID",
     "phone": "Phone",
+    "select_status": {
+      "active": "Active",
+      "block": "Blocked",
+      "graduated": "Graduated"
+    },
     "status": "Status",
     "title": "Detail user"
   },
   "edit_user": {
     "back": "Back",
-    "title": "Edit user"
+    "message": {
+      "edit_fail": "User edition failed!",
+      "edit_success": "User edition successful!"
+    },
+    "title": "Edit user information"
   },
   "layout": {
-    "create": "Create",
     "settings_tab": "Settings",
     "user_tab": "User"
   },
@@ -74,9 +83,6 @@
       "required": "is required"
     }
   },
-  "onboarding": {
-    "message": "Welcome to obytes app site"
-  },
   "settings": {
     "about": "About",
     "app_name": "App Name",
@@ -95,17 +101,13 @@
     "version": "Version",
     "vietnamese": "Vietnamese"
   },
-  "user": {
-    "back_title": "User",
-    "error_load": "Error when loading data",
-    "header": {
-      "email": "Email",
-      "full_name": "Full Name",
-      "id": "ID",
-      "status": "Status"
-    },
-    "new": "New User",
-    "title": "User Manager"
-  },
-  "welcome": "Welcome to obytes app site"
+  "users": {
+    "button_apply_filter": "Apply",
+    "button_reset_filter": "Reset Filter",
+    "filter": "Filter",
+    "order": "Order",
+    "placeholder_search": "Search",
+    "search_by": "Search by",
+    "sort_by": "Sort by"
+  }
 }

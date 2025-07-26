@@ -9,38 +9,35 @@ function delay(ms: number) {
 
 const KEY = 'mock_users';
 
-const mockUsers: User[] = [
-  {
-    id: 'B1234561',
-    name: 'Nguyen Van A',
-    gender: 'male',
-    email: 'a@example.com',
-    phone: '0123456789',
-    status: 'active',
-  },
-  {
-    id: 'B1234562',
-    name: 'Tran Thi B',
-    gender: 'female',
-    email: 'b@example.com',
-    phone: '0987654321',
-    status: 'graduated',
-  },
-  {
-    id: 'B1234563',
-    name: 'Le Van C',
-    gender: 'male',
-    email: 'c@example.com',
-    phone: '0111222333',
-    status: 'block',
-  },
-];
+const mockUsers: User[] = Array.from({ length: 20 }, (_, i) => {
+  const index = i + 1;
+  const id = `B12345${(index + 60).toString().padStart(2, '0')}`;
+
+  const baseNames = ['Nguyen Van A', 'Tran Thi B', 'Le Van C'];
+  const genders = ['male', 'female', 'male'];
+  const statuses = ['active', 'graduated', 'block'];
+
+  const name = baseNames[i % 3].replace(/[A-C]/, String.fromCharCode(65 + i));
+  const gender = genders[i % 3] as 'male' | 'female';
+  const status = statuses[i % 3] as 'active' | 'graduated' | 'block';
+
+  return {
+    id,
+    name,
+    gender,
+    email: `${name.split(' ').join('').toLowerCase()}@example.com`,
+    phone: `0900${(100000 + i).toString().slice(0, 6)}`,
+    status,
+  };
+});
 
 export async function getUsersMock({
   search,
 }: {
   search?: string;
 }): Promise<ResponseData<User[]>> {
+  await delay(1000);
+
   let users = getItem<User[]>(KEY);
 
   if (!Array.isArray(users) || users.length === 0) {
@@ -62,6 +59,8 @@ export async function getUsersMock({
 }
 
 export async function getUserMock(id: string): Promise<ResponseData<User>> {
+  await delay(1000);
+
   const users = getItem<User[]>(KEY) || [];
 
   const user = users.find((u) => u.id === id) || null;
@@ -74,6 +73,8 @@ export async function getUserMock(id: string): Promise<ResponseData<User>> {
 }
 
 export async function createUserMock(user: User): Promise<ResponseData<User>> {
+  await delay(1000);
+
   let users = getItem<User[]>(KEY) || [];
 
   if (users.some((u) => u.id === user.id)) {
@@ -97,6 +98,8 @@ export async function createUserMock(user: User): Promise<ResponseData<User>> {
 export async function updateUserMock(
   update: Partial<User> & { id: string }
 ): Promise<ResponseData<User>> {
+  await delay(1000);
+
   let users = getItem<User[]>(KEY) || [];
   const index = users.findIndex((u) => u.id === update.id);
 
@@ -150,6 +153,8 @@ export async function changeStatusUserMock(
 }
 
 export async function deleteUserMock(id: string): Promise<ResponseData<null>> {
+  await delay(1000);
+
   let users = getItem<User[]>(KEY) || [];
   const index = users.findIndex((u) => u.id === id);
 

@@ -14,25 +14,26 @@ const genderOptions = [
 interface UserFormFieldsProps {
   control: Control<FormData>;
   errors?: FieldErrors<FormData>;
-  showId?: boolean;
+  isEdit?: boolean;
   disabled?: boolean;
 }
 
 export function UserFormFields({
   control,
-  showId = true,
-  disabled = false,
+  isEdit = false,
 }: UserFormFieldsProps) {
   return (
     <View className="space-y-3">
-      {showId && (
+      {isEdit && (
         <ControlledInput
           name="id"
           control={control}
           label={translate('new_user.form.id')}
-          disabled={disabled}
+          disabled={true}
+          readOnly={true}
         />
       )}
+
       <ControlledInput
         name="name"
         control={control}

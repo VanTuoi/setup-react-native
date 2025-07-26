@@ -10,7 +10,6 @@ import {
   FocusAwareStatusBar,
   ScrollView,
   Text,
-  TouchableOpacity,
   View,
 } from '@/components/ui';
 import { EditIcon } from '@/components/ui/icons/edit';
@@ -36,14 +35,15 @@ export default function User() {
         title,
         headerBackTitle: 'Users',
         headerRight: () => (
-          <TouchableOpacity
+          <Button
             onPress={() => {
               router.push(`/user/${id}/edit`);
             }}
+            variant="ghost"
             className="mr-3"
           >
             <EditIcon color={theme === 'dark' ? '#fff' : '#000'} size={16} />
-          </TouchableOpacity>
+          </Button>
         ),
       }}
     />
@@ -65,60 +65,72 @@ export default function User() {
         {renderHeader('User')}
         <FocusAwareStatusBar />
         <Text className="text-center text-red-500">
-          {translate('detail_user.error_load')}
+          {translate('common.error_load')}
         </Text>
       </View>
     );
   }
 
   return (
-    <ScrollView
-      className="flex-1 p-4"
-      contentContainerStyle={{ paddingBottom: 40 }}
-    >
-      {renderHeader(translate('detail_user.title'))}
-      <FocusAwareStatusBar />
+    <View className="flex-1">
+      <ScrollView
+        className="flex-1 p-2"
+        contentContainerStyle={{ paddingBottom: 80 }}
+      >
+        {renderHeader(translate('detail_user.title'))}
+        <FocusAwareStatusBar />
 
-      <View className="flex flex-col items-start gap-4">
-        <Text className="text-2xl font-bold">{data.name}</Text>
+        <View className="flex flex-col items-start gap-2">
+          <Text className="text-xl font-bold">{data.name}</Text>
 
-        <Text>
-          <Text className="font-semibold">
-            {translate('detail_user.email')}:
-          </Text>{' '}
-          {data.email}
-        </Text>
-        <Text>
-          <Text className="font-semibold">
-            {translate('detail_user.phone')}:
-          </Text>{' '}
-          {data.phone}
-        </Text>
-        <Text>
-          <Text className="font-semibold">
-            {translate('detail_user.gender')}:
-          </Text>{' '}
-          {data.gender}
-        </Text>
-        <Text>
-          <Text className="font-semibold">
-            {translate('detail_user.status')}:
-          </Text>{' '}
-          <Text
-            className={`font-semibold ${
-              data.status === 'block'
-                ? 'text-red-500'
-                : data.status === 'graduated'
-                  ? 'text-green-600'
-                  : 'text-blue-600'
-            }`}
-          >
-            {data.status}
+          <Text>
+            <Text className="font-semibold">
+              {translate('detail_user.id')}:
+            </Text>{' '}
+            {data.id}
           </Text>
-        </Text>
-      </View>
-      <View className="mt-10 w-full">
+
+          <Text>
+            <Text className="font-semibold">
+              {translate('detail_user.email')}:
+            </Text>{' '}
+            {data.email}
+          </Text>
+          <Text>
+            <Text className="font-semibold">
+              {translate('detail_user.phone')}:
+            </Text>{' '}
+            {data.phone}
+          </Text>
+          <Text>
+            <Text className="font-semibold">
+              {translate('detail_user.gender')}:
+            </Text>{' '}
+            {data.gender}
+          </Text>
+          <Text>
+            <Text className="font-semibold">
+              {translate('detail_user.status')}:
+            </Text>{' '}
+            <Text
+              className={`font-semibold ${
+                data.status === 'block'
+                  ? 'text-red-500'
+                  : data.status === 'graduated'
+                    ? 'text-green-600'
+                    : 'text-blue-600'
+              }`}
+            >
+              {data.status}
+            </Text>
+          </Text>
+        </View>
+      </ScrollView>
+      <View className="absolute inset-x-0 bottom-0 p-4 dark:border-gray-800">
         <Button
+          className="dark:bg-gray-200"
+          textClassName="text-red-500 font-bold dark:text-red-700"
+          variant="outline"
           loading={deleteMutation.isPending}
           label={translate('detail_user.delete_user.button_label')}
           size="default"
@@ -148,6 +160,6 @@ export default function User() {
           }}
         />
       </View>
-    </ScrollView>
+    </View>
   );
 }

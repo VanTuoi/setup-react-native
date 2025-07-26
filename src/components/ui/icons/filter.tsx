@@ -2,9 +2,7 @@ import * as React from 'react';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
 
-import colors from '../colors';
-
-export const Filter = ({ color = colors.primary[500], ...props }: SvgProps) => (
+export const Filter = ({ color = '#999', ...props }: SvgProps) => (
   <Svg
     color={color}
     viewBox="0 0 36 36"
