@@ -3,9 +3,7 @@ env:
   EMAIL: 'admin@example.com'
   PASSWORD: '123456'
 ---
-- clearState
 - launchApp
-- runFlow: ../utils/login.yaml
 - assertVisible: 'Search'
 - tapOn:
     id: 'settings-tab'

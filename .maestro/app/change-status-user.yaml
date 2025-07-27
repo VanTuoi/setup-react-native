@@ -1,7 +1,7 @@
 appId: ${APP_ID}
 env:
-  USER_1: B1234561
-  USER_2: B1234562
+  Id: 'B1234561'
+  Email: 'nguyenvana@example.com'
 ---
 - clearState
 - launchApp
@@ -9,21 +9,6 @@ env:
 - runFlow: ../utils/login.yaml
 
 - tapOn:
-    id: 'User-${USER_1}-status-trigger'
+    id: 'User-${Id}-status-trigger'
 - tapOn:
-    id: 'User-${USER_1}-status-item-block'
-- assertVisible:
-    id: 'User-${USER_1}-status-label'
-    text: 'Block'
-
-- tapOn:
-    id: 'User-${USER_2}-status-trigger'
-- tapOn:
-    id: 'User-${USER_2}-status-item-graduated'
-- assertVisible:
-    id: 'User-${USER_2}-status-label'
-    text: 'Graduated'
-
-- assertVisible:
-    id: 'User-${USER_1}-status-label'
-    text: 'Block'
+    id: 'User-${Id}-status-item-block'

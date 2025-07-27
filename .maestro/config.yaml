@@ -1,6 +1,6 @@
 flows:
   - auth/*
-  # - app/*
+  - app/*
 
 excludeTags:
   - util
