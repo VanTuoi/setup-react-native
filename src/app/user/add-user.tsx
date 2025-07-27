@@ -118,6 +118,7 @@ export default function AddUser() {
 
       <View className="absolute inset-x-0 bottom-0 p-4">
         <Button
+          testID="add-new-user"
           variant="secondary"
           textClassName="text-white font-bold"
           loading={loadingCreate}

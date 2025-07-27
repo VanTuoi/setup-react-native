@@ -31,6 +31,7 @@ export function UserFormFields({
           label={translate('new_user.form.id')}
           disabled={true}
           readOnly={true}
+          testID="input-id"
         />
       )}
 
@@ -38,18 +39,21 @@ export function UserFormFields({
         name="name"
         control={control}
         label={translate('new_user.form.name')}
+        testID="input-name"
       />
       <ControlledInput
         name="email"
         control={control}
         label={translate('new_user.form.email')}
         keyboardType="email-address"
+        testID="input-email"
       />
       <ControlledInput
         name="phone"
         control={control}
         label={translate('new_user.form.phone')}
         keyboardType="phone-pad"
+        testID="input-phone"
       />
       <ControlledSelect
         name="gender"
@@ -57,6 +61,7 @@ export function UserFormFields({
         label={translate('new_user.form.gender')}
         options={genderOptions}
         placeholder={translate('new_user.form.gender_placeholder')}
+        testID="select-gender"
       />
     </View>
   );

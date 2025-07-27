@@ -54,6 +54,7 @@ export default function Home() {
         ItemSeparatorComponent={() => <View className="h-1" />}
       />
       <Button
+        testID="add-new-user"
         onPress={() => router.push('/user/add-user')}
         size="icon"
         className="absolute bottom-8 right-4 size-16 rounded-full bg-primary-500 shadow-xl dark:bg-primary-400"
