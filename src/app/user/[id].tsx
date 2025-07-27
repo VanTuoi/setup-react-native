@@ -36,6 +36,7 @@ export default function User() {
         headerBackTitle: 'Users',
         headerRight: () => (
           <Button
+            testID="edit-user"
             onPress={() => {
               router.push(`/user/${id}/edit`);
             }}
@@ -128,6 +129,7 @@ export default function User() {
       </ScrollView>
       <View className="absolute inset-x-0 bottom-0 p-4 dark:border-gray-800">
         <Button
+          testID="delete-user"
           className="dark:bg-gray-200"
           textClassName="text-red-500 font-bold dark:text-red-700"
           variant="outline"

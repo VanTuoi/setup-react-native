@@ -85,7 +85,10 @@ export const UserStatusItem = ({ User }: Props) => {
         {changeStatus.isPending ? (
           <ActivityIndicator size="small" color="#000" />
         ) : (
-          <Text className={`text-sm font-semibold ${textColors[User.status]}`}>
+          <Text
+            testID={`User-${User.id}-status-trigger`}
+            className={`text-sm font-semibold ${textColors[User.status]}`}
+          >
             {statusLabel}
           </Text>
         )}

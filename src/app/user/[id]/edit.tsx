@@ -151,8 +151,9 @@ export default function EditUser() {
         </View>
       </ScrollView>
 
-      <View className="absolute inset-x-0 bottom-0  p-4">
+      <View className="absolute inset-x-0 bottom-0 p-4">
         <Button
+          testID="edit-user"
           className="bg-green-500 dark:bg-green-700"
           textClassName="text-white font-bold dark:text-white"
           loading={loadingUpdate}
